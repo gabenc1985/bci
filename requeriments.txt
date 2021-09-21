@@ -1,7 +1,0 @@
-numpy
-sklearn
-h5py
-mne
-graphviz
-matplotlib
-seaborn
