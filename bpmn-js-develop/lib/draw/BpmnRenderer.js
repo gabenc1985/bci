@@ -1623,7 +1623,41 @@ export default function BpmnRenderer(
     },
     'bpmn:BCICompetitionTask': function(parentGfx, element) {
       var task = renderer('bpmn:Task')(parentGfx, element);
-      var pathData = pathMap.getScaledPath('BCI_COMPETITION', {
+      var pathData = pathMap.getScaledPath('BCI_ADQ_COMPETITION', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, '\e[0;34m'),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIAdquisitionRandomTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_ADQ_RANDOM', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, '\e[0;34m'),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIPreNormalizacionTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_PRE_NORMALIZACION', {
         abspos: {
           x: 17,
           y: 15
@@ -1638,6 +1672,432 @@ export default function BpmnRenderer(
 
       return task;
     },
+    'bpmn:BCIPreSeleCanalesTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_PRE_CANALES', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCICPreCortarTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_PRE_CORTAR', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIPreFiltroPasaBandaTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_PRE_FIL_PASA_BANDA', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIPreFiltroPasaBajosTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_PRE_FIL_PASA_BAJOS', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIPreFiltroPasaAltosTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_PRE_FIL_PASA_ALTOS', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIPreFiltroCarTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_PRE_FIL_CAR', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIPreTrialsTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_PRE_SEL_TRIAL', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIPreConcatenarTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_PRE_CONCATENAR', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIPreSplitTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_PRE_SPLIT', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIExtHjorthTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_EXT_HJORTH', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIExtEstadisticoTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_EXT_ESTADISTICOS', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIExtTranFourierTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_EXT_TRANS_FOURIER', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIExtBurgTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_EXT_MET_BURG', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIExtPsdWelchTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_EXT_PSD_WETCH', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIExtAARTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_EXT_AAR', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIExtWaveletsTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_EXT_WAVELETS', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIExtConcatFeaturesTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_EXT_CONCAT_FEATURES', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIExtPcaTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_EXT_PCA', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIExtFractalTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_EXT_FRACTAL', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIExtEntropiaTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_EXT_ENTROPIA', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIClaSvmTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_CLA_SVM', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIClaLdaTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_CLA_LDA', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIClaKnnTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_CLA_KNN', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIClaRandomForestTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_CLA_RAN_FOREST', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    'bpmn:BCIClaRedNeuronalTask': function(parentGfx, element) {
+      var task = renderer('bpmn:Task')(parentGfx, element);
+      var pathData = pathMap.getScaledPath('BCI_CLA_RED_NEURONALS', {
+        abspos: {
+          x: 17,
+          y: 15
+        }
+      });
+
+      /* manual path */ drawPath(parentGfx, pathData, {
+        strokeWidth: 0.5, // 0.25,
+        fill: getFillColor(element, defaultFillColor),
+        stroke: getStrokeColor(element, defaultStrokeColor)
+      });
+
+      return task;
+    },
+    
     'bpmn:TextAnnotation': function(parentGfx, element) {
       var style = {
         'fill': 'none',

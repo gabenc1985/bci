@@ -92,16 +92,6 @@ PaletteProvider.prototype.getPaletteEntries = function(element) {
         }
       }
     },
-    'space-tool': {
-      group: 'tools',
-      className: 'bpmn-icon-space-tool',
-      title: translate('Activate the create/remove space tool'),
-      action: {
-        click: function(event) {
-          spaceTool.activateSelection(event);
-        }
-      }
-    },
     'global-connect-tool': {
       group: 'tools',
       className: 'bpmn-icon-connection-multi',
@@ -115,27 +105,7 @@ PaletteProvider.prototype.getPaletteEntries = function(element) {
     'tool-separator': {
       group: 'tools',
       separator: true
-    },
-    'create.start-event': createAction(
-      'bpmn:StartEvent', 'event', 'bpmn-icon-start-event-none',
-      translate('Create StartEvent')
-    ),
-    'create.intermediate-event': createAction(
-      'bpmn:IntermediateThrowEvent', 'event', 'bpmn-icon-intermediate-event-none',
-      translate('Create Intermediate/Boundary Event')
-    ),
-    'create.end-event': createAction(
-      'bpmn:EndEvent', 'event', 'bpmn-icon-end-event-none',
-      translate('Create EndEvent')
-    ),
-    'create.exclusive-gateway': createAction(
-      'bpmn:ExclusiveGateway', 'gateway', 'bpmn-icon-gateway-none',
-      translate('Create Gateway')
-    ),
-    'create.task': createAction(
-      'bpmn:Task', 'activity', 'bpmn-icon-task',
-      translate('Create Task')
-    )
+    }
   });
 
   return actions;

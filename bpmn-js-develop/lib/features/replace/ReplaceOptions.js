@@ -510,14 +510,6 @@ export var TASK = [
     }
   },
   {
-    label: 'BCI Competition Task',
-    actionName: 'replace-with-service-task',
-    className: 'bpmn-icon-service',
-    target: {
-      type: 'bpmn:BCICompetitionTask'
-    }
-  },
-  {
     label: 'Call Activity',
     actionName: 'replace-with-call-activity',
     className: 'bpmn-icon-call-activity',
@@ -541,6 +533,240 @@ export var TASK = [
     target: {
       type: 'bpmn:SubProcess',
       isExpanded: true
+    }
+  }
+];
+
+
+export var TASK_BCI = [
+  {
+    label: 'Adquisición BCI Competición',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCICompetitionTask'
+    }
+  },
+  {
+    label: 'Adquisición Random',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIAdquisitionRandomTask'
+    }
+  }
+];
+export var TASK_BCI_PRE = [
+  {
+    label: 'Normalización',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIPreNormalizacionTask'
+    }
+  },
+  {
+    label: 'Seleccionar canales',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIPreSeleCanalesTask'
+    }
+  },
+  {
+    label: 'Cortar',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCICPreCortarTask'
+    }
+  },
+  {
+    label: 'Filtro pasa banda',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIPreFiltroPasaBandaTask'
+    }
+  },
+  {
+    label: 'Filtro pasa bajos',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIPreFiltroPasaBajosTask'
+    }
+  },
+  {
+    label: 'Filtro pasa altos',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIPreFiltroPasaAltosTask'
+    }
+  },
+  {
+    label: 'Filtro CAR',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIPreFiltroCarTask'
+    }
+  },
+  {
+    label: 'Seleccionar Trials',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIPreTrialsTask'
+    }
+  },
+  {
+    label: 'Concatenar',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIPreConcatenarTask'
+    }
+  },
+  {
+    label: 'Split',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIPreSplitTask'
+    }
+  }
+];
+export var TASK_BCI_EXT = [
+  {
+    label: 'Hjorth',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIExtHjorthTask'
+    }
+  },
+  {
+    label: 'Estadisticos',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIExtEstadisticoTask'
+    }
+  },
+  {
+    label: 'Transformada de Fourier',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIExtTranFourierTask'
+    }
+  },
+  {
+    label: 'Método de Burg',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIExtBurgTask'
+    }
+  },
+  {
+    label: 'PSD Welch',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIExtPsdWelchTask'
+    }
+  },
+  {
+    label: 'AAR',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIExtAARTask'
+    }
+  },
+  {
+    label: 'Wavelets',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIExtWaveletsTask'
+    }
+  },
+  {
+    label: 'Concatenar features',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIExtConcatFeaturesTask'
+    }
+  },
+  {
+    label: 'PCA',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIExtPcaTask'
+    }
+  },
+  {
+    label: 'Fractal',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIExtFractalTask'
+    }
+  },
+  {
+    label: 'Entropia',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIExtEntropiaTask'
+    }
+  }
+];
+export var TASK_BCI_CLA = [
+  {
+    label: 'SVM',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIClaSvmTask'
+    }
+  },
+  {
+    label: 'LDA',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIClaLdaTask'
+    }
+  },
+  {
+    label: 'KNN',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIClaKnnTask'
+    }
+  },
+  {
+    label: 'Random Forest',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIClaRandomForestTask'
+    }
+  },
+  {
+    label: 'Red neuronal simple',
+    actionName: 'replace-with-service-task',
+    className: 'bpmn-icon-service',
+    target: {
+      type: 'bpmn:BCIClaRedNeuronalTask'
     }
   }
 ];
