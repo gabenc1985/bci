@@ -30,6 +30,8 @@ import propertiesPanelModule from 'bpmn-js-properties-panel';
 import bpmnPropertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/bpmn';
 import magicPropertiesProviderModule from '../provider/magic';
 import magicModdleDescriptor from '../descriptors/magic.json';
+import { UserService } from 'app/core/user/user.service';
+import { ControlesService } from 'app/provider/controles.service';
 
 @Component({
   selector: 'app-diagram',
@@ -104,18 +106,21 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
 
   @Input() private url: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private controlesService:ControlesService) { }
 
   ngOnInit() {
+
     this.bpmnJS = new BpmnModeler({
       propertiesPanel: {
         parent: this.propertiesRef.nativeElement,
       },
+      
       additionalModules: [
         customModule,
         propertiesPanelModule,
         bpmnPropertiesProviderModule,
-        magicPropertiesProviderModule
+        magicPropertiesProviderModule, 
+        this.controlesService
       ],
       moddleExtensions: {
         magic: magicModdleDescriptor

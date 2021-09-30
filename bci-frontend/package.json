@@ -39,6 +39,7 @@
         "crypto-js": "3.3.0",
         "has-cors": "^1.1.0",
         "highlight.js": "11.1.0",
+        "jquery": "^3.6.0",
         "lodash-es": "4.17.21",
         "moment": "2.29.1",
         "ng-apexcharts": "1.5.12",

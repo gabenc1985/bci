@@ -7,18 +7,19 @@ import {
 
 
 
-export default function (group, element, translate) {
+export default function (group, element, translate, datos) {
 
   // Only return an entry, if the currently selected
   // element is a start event.
-
   if (is(element, 'bpmn:BCICompetitionTask')) {
+
     group.entries.push(entryFactory.selectBox(translate, {
       id: 'spell',
       description: 'Apply a black magic spell',
       label: translate('Database'),
       modelProperty: 'spell',
-      selectOptions: [{name:"name", value:"value"}]
+      selectOptions: datos,
+      setControlValue: true
     }));
     group.entries.push(entryFactory.textField(translate, {
       id: 'spell2',
@@ -28,4 +29,3 @@ export default function (group, element, translate) {
     }));
   }
 }
-
