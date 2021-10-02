@@ -108,13 +108,13 @@ PaletteProvider.prototype.getPaletteEntries = function(element) {
     },
     'create.task-competition': createAction(
       'bpmn:BCICompetitionTask',
-      'activity',
+      'adquisicion',
       'bpmn-icon-task',
       translate('Adquisición BCI Competición')
     ),
     'create.task-random': createAction(
       'bpmn:BCIAdquisitionRandomTask',
-      'activity',
+      'adquisicion',
       'bpmn-icon-task',
       translate('Adquisición Random')
     ),
@@ -124,61 +124,61 @@ PaletteProvider.prototype.getPaletteEntries = function(element) {
     },
     'create.task-normalizacion': createAction(
       'bpmn:BCIPreNormalizacionTask',
-      'activity',
+      'preprocesamiento',
       'bpmn-icon-task',
       translate('Normalización')
     ),
     'create.task-canales': createAction(
       'bpmn:BCIPreSeleCanalesTask',
-      'activity',
+      'preprocesamiento',
       'bpmn-icon-task',
       translate('Seleccionar canales')
     ),
     'create.task-cortar': createAction(
       'bpmn:BCICPreCortarTask',
-      'activity',
+      'preprocesamiento',
       'bpmn-icon-task',
       translate('Cortar')
     ),
     'create.task-filtro-pasa-banda': createAction(
       'bpmn:BCIPreFiltroPasaBandaTask',
-      'activity',
+      'preprocesamiento',
       'bpmn-icon-task',
       translate('Filtro pasa banda')
     ),
     'create.task-filtro-pasa-bajos': createAction(
       'bpmn:BCIPreFiltroPasaBajosTask',
-      'activity',
+      'preprocesamiento',
       'bpmn-icon-task',
       translate('Filtro pasa bajos')
     ),
     'create.task-filtro-pasa-altos': createAction(
       'bpmn:BCIPreFiltroPasaAltosTask',
-      'activity',
+      'preprocesamiento',
       'bpmn-icon-task',
       translate('Filtro pasa altos')
     ),
     'create.task-filtro-car': createAction(
       'bpmn:BCIPreFiltroCarTask',
-      'activity',
+      'preprocesamiento',
       'bpmn-icon-task',
       translate('Filtro CAR')
     ),
     'create.task-seleccionar': createAction(
       'bpmn:BCIPreTrialsTask',
-      'activity',
+      'preprocesamiento',
       'bpmn-icon-task',
       translate('Seleccionar Trials')
     ),
     'create.task-concatenar': createAction(
       'bpmn:BCIPreConcatenarTask',
-      'activity',
+      'preprocesamiento',
       'bpmn-icon-task',
       translate('Concatenar')
     ),
     'create.task-split': createAction(
       'bpmn:BCIPreSplitTask',
-      'activity',
+      'preprocesamiento',
       'bpmn-icon-task',
       translate('Split')
     ),
@@ -188,67 +188,67 @@ PaletteProvider.prototype.getPaletteEntries = function(element) {
     },
     'create.task-hjorth': createAction(
       'bpmn:BCIExtHjorthTask',
-      'activity',
+      'extraccion',
       'bpmn-icon-task',
       translate('Hjorth')
     ),
     'create.task-estadistico': createAction(
       'bpmn:BCIExtEstadisticoTask',
-      'activity',
+      'extraccion',
       'bpmn-icon-task',
       translate('Estadisticos')
     ),
     'create.task-fourier': createAction(
       'bpmn:BCIExtTranFourierTask',
-      'activity',
+      'extraccion',
       'bpmn-icon-task',
       translate('Transformada de Fourier')
     ),
     'create.task-burg': createAction(
       'bpmn:BCIExtBurgTask',
-      'activity',
+      'extraccion',
       'bpmn-icon-task',
       translate('Método de Burg')
     ),
     'create.task-psd-welch': createAction(
       'bpmn:bpmn:BCIExtPsdWelchTask',
-      'activity',
+      'extraccion',
       'bpmn-icon-task',
       translate('PSD Welch')
     ),
     'create.task-aar': createAction(
       'bpmn:BCIExtAARTask',
-      'activity',
+      'extraccion',
       'bpmn-icon-task',
       translate('AAR')
     ),
     'create.task-wavelets': createAction(
       'bpmn:BCIExtWaveletsTask',
-      'activity',
+      'extraccion',
       'bpmn-icon-task',
       translate('Wavelets')
     ),
     'create.task-features': createAction(
       'bpmn:BCIExtConcatFeaturesTask',
-      'activity',
+      'extraccion',
       'bpmn-icon-task',
       translate('Concatenar features')
     ),
     'create.task-pca': createAction(
       'bpmn:BCIExtPcaTask',
-      'activity',
+      'extraccion',
       'bpmn-icon-task',
       translate('PCA')
     ),
     'create.task-fractal': createAction(
       'bpmn:BCIExtFractalTask',
-      'activity',
+      'extraccion',
       'bpmn-icon-task',
       translate('Fractal')
     ),
     'create.task-entropia': createAction(
       'bpmn:BCIExtEntropiaTask',
-      'activity',
+      'extraccion',
       'bpmn-icon-task',
       translate('Entropia')
     ),
@@ -258,31 +258,31 @@ PaletteProvider.prototype.getPaletteEntries = function(element) {
     },
     'create.task-svm': createAction(
       'bpmn:BCIClaSvmTask',
-      'activity',
+      'clasificacion',
       'bpmn-icon-task',
       translate('SVM')
     ),
     'create.task-lda': createAction(
       'bpmn:BCIClaLdaTask',
-      'activity',
+      'clasificacion',
       'bpmn-icon-task',
       translate('LDA')
     ),
     'create.task-knn': createAction(
       'bpmn:BCIClaKnnTask',
-      'activity',
+      'clasificacion',
       'bpmn-icon-task',
       translate('KNN')
     ),
     'create.task-forest': createAction(
       'bpmn:BCIClaRandomForestTask',
-      'activity',
+      'clasificacion',
       'bpmn-icon-task',
       translate('Random Forest')
     ),
     'create.task-neuronal-simple': createAction(
       'bpmn:BCIClaRedNeuronalTask',
-      'activity',
+      'clasificacion',
       'bpmn-icon-task',
       translate('Red neuronal simple')
     )
