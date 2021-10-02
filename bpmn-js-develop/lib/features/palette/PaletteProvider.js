@@ -106,11 +106,185 @@ PaletteProvider.prototype.getPaletteEntries = function(element) {
       group: 'tools',
       separator: true
     },
-    'create.task': createAction(
+    'create.task-competition': createAction(
+      'bpmn:BCICompetitionTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Adquisición BCI Competición')
+    ),
+    'create.task-random': createAction(
       'bpmn:BCIAdquisitionRandomTask',
       'activity',
       'bpmn-icon-task',
-      translate('Create Task')
+      translate('Adquisición Random')
+    ),
+    'tool-adquisicion': {
+      group: 'adquisicion',
+      separator: true
+    },
+    'create.task-normalizacion': createAction(
+      'bpmn:BCIPreNormalizacionTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Normalización')
+    ),
+    'create.task-canales': createAction(
+      'bpmn:BCIPreSeleCanalesTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Seleccionar canales')
+    ),
+    'create.task-cortar': createAction(
+      'bpmn:BCICPreCortarTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Cortar')
+    ),
+    'create.task-filtro-pasa-banda': createAction(
+      'bpmn:BCIPreFiltroPasaBandaTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Filtro pasa banda')
+    ),
+    'create.task-filtro-pasa-bajos': createAction(
+      'bpmn:BCIPreFiltroPasaBajosTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Filtro pasa bajos')
+    ),
+    'create.task-filtro-pasa-altos': createAction(
+      'bpmn:BCIPreFiltroPasaAltosTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Filtro pasa altos')
+    ),
+    'create.task-filtro-car': createAction(
+      'bpmn:BCIPreFiltroCarTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Filtro CAR')
+    ),
+    'create.task-seleccionar': createAction(
+      'bpmn:BCIPreTrialsTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Seleccionar Trials')
+    ),
+    'create.task-concatenar': createAction(
+      'bpmn:BCIPreConcatenarTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Concatenar')
+    ),
+    'create.task-split': createAction(
+      'bpmn:BCIPreSplitTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Split')
+    ),
+    'tool-preprocesamiento': {
+      group: 'preprocesamiento',
+      separator: true
+    },
+    'create.task-hjorth': createAction(
+      'bpmn:BCIExtHjorthTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Hjorth')
+    ),
+    'create.task-estadistico': createAction(
+      'bpmn:BCIExtEstadisticoTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Estadisticos')
+    ),
+    'create.task-fourier': createAction(
+      'bpmn:BCIExtTranFourierTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Transformada de Fourier')
+    ),
+    'create.task-burg': createAction(
+      'bpmn:BCIExtBurgTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Método de Burg')
+    ),
+    'create.task-psd-welch': createAction(
+      'bpmn:bpmn:BCIExtPsdWelchTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('PSD Welch')
+    ),
+    'create.task-aar': createAction(
+      'bpmn:BCIExtAARTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('AAR')
+    ),
+    'create.task-wavelets': createAction(
+      'bpmn:BCIExtWaveletsTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Wavelets')
+    ),
+    'create.task-features': createAction(
+      'bpmn:BCIExtConcatFeaturesTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Concatenar features')
+    ),
+    'create.task-pca': createAction(
+      'bpmn:BCIExtPcaTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('PCA')
+    ),
+    'create.task-fractal': createAction(
+      'bpmn:BCIExtFractalTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Fractal')
+    ),
+    'create.task-entropia': createAction(
+      'bpmn:BCIExtEntropiaTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Entropia')
+    ),
+    'tool-extraccion': {
+      group: 'extraccion',
+      separator: true
+    },
+    'create.task-svm': createAction(
+      'bpmn:BCIClaSvmTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('SVM')
+    ),
+    'create.task-lda': createAction(
+      'bpmn:BCIClaLdaTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('LDA')
+    ),
+    'create.task-knn': createAction(
+      'bpmn:BCIClaKnnTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('KNN')
+    ),
+    'create.task-forest': createAction(
+      'bpmn:BCIClaRandomForestTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Random Forest')
+    ),
+    'create.task-neuronal-simple': createAction(
+      'bpmn:BCIClaRedNeuronalTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Red neuronal simple')
     )
   });
 

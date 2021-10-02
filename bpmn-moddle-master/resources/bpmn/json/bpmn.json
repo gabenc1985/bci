@@ -2363,7 +2363,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIAdquisitionRandomTask",
       "superClass": [
         "Task"
@@ -2381,7 +2382,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIPreNormalizacionTask",
       "superClass": [
         "Task"
@@ -2399,7 +2401,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIPreSeleCanalesTask",
       "superClass": [
         "Task"
@@ -2417,7 +2420,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCICPreCortarTask",
       "superClass": [
         "Task"
@@ -2435,7 +2439,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIPreFiltroPasaBandaTask",
       "superClass": [
         "Task"
@@ -2453,7 +2458,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIPreFiltroPasaBajosTask",
       "superClass": [
         "Task"
@@ -2471,7 +2477,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIPreFiltroPasaAltosTask",
       "superClass": [
         "Task"
@@ -2489,7 +2496,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIPreFiltroCarTask",
       "superClass": [
         "Task"
@@ -2507,7 +2515,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIPreTrialsTask",
       "superClass": [
         "Task"
@@ -2525,7 +2534,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIPreConcatenarTask",
       "superClass": [
         "Task"
@@ -2543,7 +2553,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIPreSplitTask",
       "superClass": [
         "Task"
@@ -2561,7 +2572,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIExtHjorthTask",
       "superClass": [
         "Task"
@@ -2579,7 +2591,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIExtEstadisticoTask",
       "superClass": [
         "Task"
@@ -2597,7 +2610,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIExtTranFourierTask",
       "superClass": [
         "Task"
@@ -2615,7 +2629,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIExtBurgTask",
       "superClass": [
         "Task"
@@ -2633,7 +2648,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIExtPsdWelchTask",
       "superClass": [
         "Task"
@@ -2651,7 +2667,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIExtAARTask",
       "superClass": [
         "Task"
@@ -2669,7 +2686,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIExtWaveletsTask",
       "superClass": [
         "Task"
@@ -2687,7 +2705,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIExtConcatFeaturesTask",
       "superClass": [
         "Task"
@@ -2705,7 +2724,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIExtPcaTask",
       "superClass": [
         "Task"
@@ -2723,7 +2743,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIExtFractalTask",
       "superClass": [
         "Task"
@@ -2741,7 +2762,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIExtEntropiaTask",
       "superClass": [
         "Task"
@@ -2759,7 +2781,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIClaSvmTask",
       "superClass": [
         "Task"
@@ -2777,7 +2800,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIClaLdaTask",
       "superClass": [
         "Task"
@@ -2795,7 +2819,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIClaKnnTask",
       "superClass": [
         "Task"
@@ -2813,7 +2838,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIClaRandomForestTask",
       "superClass": [
         "Task"
@@ -2831,7 +2857,8 @@
           "isReference": true
         }
       ]
-    },{
+    },
+    {
       "name": "BCIClaRedNeuronalTask",
       "superClass": [
         "Task"

@@ -38,7 +38,7 @@ describe('features/palette', function() {
     var entries = domQueryAll('.entry', paletteElement);
 
     // then
-    expect(entries.length).to.equal(4);
+    expect(entries.length).to.equal(31);
   }));
 
   describe('tools', function() {
