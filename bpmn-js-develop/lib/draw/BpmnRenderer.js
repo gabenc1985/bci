@@ -1632,7 +1632,7 @@ export default function BpmnRenderer(
 
       /* manual path */ drawPath(parentGfx, pathData, {
         strokeWidth: 0.5, // 0.25,
-        fill: getFillColor(element, '\e[0;34m'),
+        fill: getFillColor(element, 'blue'),
         stroke: getStrokeColor(element, defaultStrokeColor)
       });
 
@@ -1649,7 +1649,7 @@ export default function BpmnRenderer(
 
       /* manual path */ drawPath(parentGfx, pathData, {
         strokeWidth: 0.5, // 0.25,
-        fill: getFillColor(element, '\e[0;34m'),
+        fill: getFillColor(element, '[0;34m'),
         stroke: getStrokeColor(element, defaultStrokeColor)
       });
 
@@ -2097,7 +2097,7 @@ export default function BpmnRenderer(
 
       return task;
     },
-    
+
     'bpmn:TextAnnotation': function(parentGfx, element) {
       var style = {
         'fill': 'none',

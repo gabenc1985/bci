@@ -119,8 +119,7 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
         customModule,
         propertiesPanelModule,
         bpmnPropertiesProviderModule,
-        magicPropertiesProviderModule, 
-        this.controlesService
+       magicPropertiesProviderModule
       ],
       moddleExtensions: {
         magic: magicModdleDescriptor

@@ -40,11 +40,11 @@ PaletteProvider.prototype.getPaletteEntries = function(element) {
   var actions = {},
       create = this._create,
       elementFactory = this._elementFactory,
-      spaceTool = this._spaceTool,
       lassoTool = this._lassoTool,
       handTool = this._handTool,
       globalConnect = this._globalConnect,
       translate = this._translate;
+
 
   function createAction(type, group, className, title, options) {
 
@@ -95,7 +95,7 @@ PaletteProvider.prototype.getPaletteEntries = function(element) {
     'global-connect-tool': {
       group: 'tools',
       className: 'bpmn-icon-connection-multi',
-      title: translate('Activate the global connect tool'),
+      title: translate('Activate the global connect toolssss'),
       action: {
         click: function(event) {
           globalConnect.start(event);
@@ -105,7 +105,13 @@ PaletteProvider.prototype.getPaletteEntries = function(element) {
     'tool-separator': {
       group: 'tools',
       separator: true
-    }
+    },
+    'create.task': createAction(
+      'bpmn:BCIAdquisitionRandomTask',
+      'activity',
+      'bpmn-icon-task',
+      translate('Create Task')
+    )
   });
 
   return actions;

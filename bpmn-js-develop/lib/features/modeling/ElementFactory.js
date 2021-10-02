@@ -156,6 +156,9 @@ ElementFactory.prototype._getDefaultSize = function(semantic) {
   if (is(semantic, 'bpmn:Task')) {
     return { width: 100, height: 80 };
   }
+  if (is(semantic, 'bpmn:BCIAdquisitionRandomTask')) {
+    return { width: 100, height: 80 };
+  }
 
   if (is(semantic, 'bpmn:Gateway')) {
     return { width: 50, height: 50 };
