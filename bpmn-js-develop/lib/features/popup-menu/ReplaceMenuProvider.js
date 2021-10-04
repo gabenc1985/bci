@@ -79,54 +79,10 @@ ReplaceMenuProvider.prototype.getEntries = function(element) {
 
   var differentType = isDifferentType(element);
 
-  if (is(businessObject, 'bpmn:DataObjectReference')) {
-    return this._createEntries(element, replaceOptions.DATA_OBJECT_REFERENCE);
-  }
-
-  if (is(businessObject, 'bpmn:DataStoreReference')) {
-    return this._createEntries(element, replaceOptions.DATA_STORE_REFERENCE);
-  }
-
   // start events outside sub processes
   if (is(businessObject, 'bpmn:StartEvent') && !is(businessObject.$parent, 'bpmn:SubProcess')) {
 
     entries = filter(replaceOptions.START_EVENT, differentType);
-
-    return this._createEntries(element, entries);
-  }
-
-  // expanded/collapsed pools
-  if (is(businessObject, 'bpmn:Participant')) {
-
-    entries = filter(replaceOptions.PARTICIPANT, function(entry) {
-      return isExpanded(businessObject) !== entry.target.isExpanded;
-    });
-
-    return this._createEntries(element, entries);
-  }
-
-  // start events inside event sub processes
-  if (is(businessObject, 'bpmn:StartEvent') && isEventSubProcess(businessObject.$parent)) {
-    entries = filter(replaceOptions.EVENT_SUB_PROCESS_START_EVENT, function(entry) {
-
-      var target = entry.target;
-
-      var isInterrupting = target.isInterrupting !== false;
-
-      var isInterruptingEqual = getBusinessObject(element).isInterrupting === isInterrupting;
-
-      // filters elements which types and event definition are equal but have have different interrupting types
-      return differentType(entry) || !differentType(entry) && !isInterruptingEqual;
-
-    });
-
-    return this._createEntries(element, entries);
-  }
-
-  // start events inside sub processes
-  if (is(businessObject, 'bpmn:StartEvent') && !isEventSubProcess(businessObject.$parent)
-      && is(businessObject.$parent, 'bpmn:SubProcess')) {
-    entries = filter(replaceOptions.START_EVENT_SUB_PROCESS, differentType);
 
     return this._createEntries(element, entries);
   }
@@ -148,81 +104,10 @@ ReplaceMenuProvider.prototype.getEntries = function(element) {
     return this._createEntries(element, entries);
   }
 
-  // boundary events
-  if (is(businessObject, 'bpmn:BoundaryEvent')) {
-
-    entries = filter(replaceOptions.BOUNDARY_EVENT, function(entry) {
-
-      var target = entry.target;
-
-      if (target.eventDefinitionType == 'bpmn:CancelEventDefinition' &&
-         !is(businessObject.attachedToRef, 'bpmn:Transaction')) {
-        return false;
-      }
-      var cancelActivity = target.cancelActivity !== false;
-
-      var isCancelActivityEqual = businessObject.cancelActivity == cancelActivity;
-
-      return differentType(entry) || !differentType(entry) && !isCancelActivityEqual;
-    });
-
-    return this._createEntries(element, entries);
-  }
-
-  // intermediate events
-  if (is(businessObject, 'bpmn:IntermediateCatchEvent') ||
-      is(businessObject, 'bpmn:IntermediateThrowEvent')) {
-
-    entries = filter(replaceOptions.INTERMEDIATE_EVENT, differentType);
-
-    return this._createEntries(element, entries);
-  }
-
   // gateways
   if (is(businessObject, 'bpmn:Gateway')) {
 
     entries = filter(replaceOptions.GATEWAY, differentType);
-
-    return this._createEntries(element, entries);
-  }
-
-  // transactions
-  if (is(businessObject, 'bpmn:Transaction')) {
-
-    entries = filter(replaceOptions.TRANSACTION, differentType);
-
-    return this._createEntries(element, entries);
-  }
-
-  // expanded event sub processes
-  if (isEventSubProcess(businessObject) && isExpanded(businessObject)) {
-
-    entries = filter(replaceOptions.EVENT_SUB_PROCESS, differentType);
-
-    return this._createEntries(element, entries);
-  }
-
-  // expanded sub processes
-  if (is(businessObject, 'bpmn:SubProcess') && isExpanded(businessObject)) {
-
-    entries = filter(replaceOptions.SUBPROCESS_EXPANDED, differentType);
-
-    return this._createEntries(element, entries);
-  }
-
-  // collapsed ad hoc sub processes
-  if (is(businessObject, 'bpmn:AdHocSubProcess') && !isExpanded(businessObject)) {
-
-    entries = filter(replaceOptions.TASK, function(entry) {
-
-      var target = entry.target;
-
-      var isTargetSubProcess = target.type === 'bpmn:SubProcess';
-
-      var isTargetExpanded = target.isExpanded === true;
-
-      return isDifferentType(element, target) && (!isTargetSubProcess || isTargetExpanded);
-    });
 
     return this._createEntries(element, entries);
   }
@@ -234,7 +119,6 @@ ReplaceMenuProvider.prototype.getEntries = function(element) {
 
   // flow nodes
   if (is(businessObject, 'bpmn:FlowNode')) {
-    entries = filter(replaceOptions.TASK, differentType);
 
     // collapsed SubProcess can not be replaced with itself
     if (is(businessObject, 'bpmn:SubProcess') && !isExpanded(businessObject)) {
@@ -242,7 +126,42 @@ ReplaceMenuProvider.prototype.getEntries = function(element) {
         return entry.label !== 'Sub Process (collapsed)';
       });
     }
-
+    if (is(businessObject, 'bpmn:BCICompetitionTask')
+      || is(businessObject, 'bpmn:BCIAdquisitionRandomTask')) {
+      entries = filter(replaceOptions.TASK_BCI, differentType);
+    }
+    if (is(businessObject, 'bpmn:BCIClaSvmTask')
+      || is(businessObject, 'bpmn:BCIClaLdaTask')
+      || is(businessObject, 'bpmn:BCIClaKnnTask')
+      || is(businessObject, 'bpmn:BCIClaRandomForestTask')
+      || is(businessObject, 'bpmn:BCIClaRedNeuronalTask')) {
+      entries = filter(replaceOptions.TASK_BCI_CLA, differentType);
+    }
+    if (is(businessObject, 'bpmn:BCIExtHjorthTask')
+      || is(businessObject, 'bpmn:BCIExtEstadisticoTask')
+      || is(businessObject, 'bpmn:BCIExtTranFourierTask')
+      || is(businessObject, 'bpmn:BCIExtBurgTask')
+      || is(businessObject, 'bpmn:BCIExtPsdWelchTask')
+      || is(businessObject, 'bpmn:BCIExtAARTask')
+      || is(businessObject, 'bpmn:BCIExtWaveletsTask')
+      || is(businessObject, 'bpmn:BCIExtConcatFeaturesTask')
+      || is(businessObject, 'bpmn:BCIExtPcaTask')
+      || is(businessObject, 'bpmn:BCIExtFractalTask')
+      || is(businessObject, 'bpmn:BCIExtEntropiaTask')) {
+      entries = filter(replaceOptions.TASK_BCI_EXT, differentType);
+    }
+    if (is(businessObject, 'bpmn:BCIPreNormalizacionTask')
+      || is(businessObject, 'bpmn:BCIPreSeleCanalesTask')
+      || is(businessObject, 'bpmn:BCICPreCortarTask')
+      || is(businessObject, 'bpmn:BCIPreFiltroPasaBandaTask')
+      || is(businessObject, 'bpmn:BCIPreFiltroPasaBajosTask')
+      || is(businessObject, 'bpmn:BCIPreFiltroPasaAltosTask')
+      || is(businessObject, 'bpmn:BCIPreFiltroCarTask')
+      || is(businessObject, 'bpmn:BCIPreTrialsTask')
+      || is(businessObject, 'bpmn:BCIPreConcatenarTask')
+      || is(businessObject, 'bpmn:BCIPreSplitTask')) {
+      entries = filter(replaceOptions.TASK_BCI_PRE, differentType);
+    }
     return this._createEntries(element, entries);
   }
 
@@ -262,10 +181,6 @@ ReplaceMenuProvider.prototype.getHeaderEntries = function(element) {
 
   var headerEntries = [];
 
-  if (is(element, 'bpmn:Activity') && !isEventSubProcess(element)) {
-    headerEntries = headerEntries.concat(this._getLoopEntries(element));
-  }
-
   if (is(element, 'bpmn:DataObjectReference')) {
     headerEntries = headerEntries.concat(this._getDataObjectIsCollection(element));
   }
@@ -275,8 +190,8 @@ ReplaceMenuProvider.prototype.getHeaderEntries = function(element) {
   }
 
   if (is(element, 'bpmn:SubProcess') &&
-      !is(element, 'bpmn:Transaction') &&
-      !isEventSubProcess(element)) {
+    !is(element, 'bpmn:Transaction') &&
+    !isEventSubProcess(element)) {
     headerEntries.push(this._getAdHocEntry(element));
   }
 
@@ -331,10 +246,10 @@ ReplaceMenuProvider.prototype._createSequenceFlowEntries = function(element, rep
     switch (entry.actionName) {
     case 'replace-with-default-flow':
       if (businessObject.sourceRef.default !== businessObject &&
-            (is(businessObject.sourceRef, 'bpmn:ExclusiveGateway') ||
-             is(businessObject.sourceRef, 'bpmn:InclusiveGateway') ||
-             is(businessObject.sourceRef, 'bpmn:ComplexGateway') ||
-             is(businessObject.sourceRef, 'bpmn:Activity'))) {
+          (is(businessObject.sourceRef, 'bpmn:ExclusiveGateway') ||
+            is(businessObject.sourceRef, 'bpmn:InclusiveGateway') ||
+            is(businessObject.sourceRef, 'bpmn:ComplexGateway') ||
+            is(businessObject.sourceRef, 'bpmn:Activity'))) {
 
         menuEntries.push(self._createMenuEntry(entry, element, function() {
           modeling.updateProperties(element.source, { default: businessObject });
@@ -362,10 +277,10 @@ ReplaceMenuProvider.prototype._createSequenceFlowEntries = function(element, rep
 
       // conditional flows
       if ((is(businessObject.sourceRef, 'bpmn:ExclusiveGateway') ||
-           is(businessObject.sourceRef, 'bpmn:InclusiveGateway') ||
-           is(businessObject.sourceRef, 'bpmn:ComplexGateway') ||
-           is(businessObject.sourceRef, 'bpmn:Activity')) &&
-           businessObject.sourceRef.default === businessObject) {
+          is(businessObject.sourceRef, 'bpmn:InclusiveGateway') ||
+          is(businessObject.sourceRef, 'bpmn:ComplexGateway') ||
+          is(businessObject.sourceRef, 'bpmn:Activity')) &&
+          businessObject.sourceRef.default === businessObject) {
 
         return menuEntries.push(self._createMenuEntry(entry, element, function() {
           modeling.updateProperties(element.source, { default: undefined });
@@ -411,84 +326,6 @@ ReplaceMenuProvider.prototype._createMenuEntry = function(definition, element, a
   };
 
   return menuEntry;
-};
-
-/**
- * Get a list of menu items containing buttons for multi instance markers
- *
- * @param  {djs.model.Base} element
- *
- * @return {Array<Object>} a list of menu items
- */
-ReplaceMenuProvider.prototype._getLoopEntries = function(element) {
-
-  var self = this;
-  var translate = this._translate;
-
-  function toggleLoopEntry(event, entry) {
-    var loopCharacteristics;
-
-    if (entry.active) {
-      loopCharacteristics = undefined;
-    } else {
-      loopCharacteristics = self._moddle.create(entry.options.loopCharacteristics);
-
-      if (entry.options.isSequential) {
-        loopCharacteristics.isSequential = entry.options.isSequential;
-      }
-    }
-    self._modeling.updateProperties(element, { loopCharacteristics: loopCharacteristics });
-  }
-
-  var businessObject = getBusinessObject(element),
-      loopCharacteristics = businessObject.loopCharacteristics;
-
-  var isSequential,
-      isLoop,
-      isParallel;
-
-  if (loopCharacteristics) {
-    isSequential = loopCharacteristics.isSequential;
-    isLoop = loopCharacteristics.isSequential === undefined;
-    isParallel = loopCharacteristics.isSequential !== undefined && !loopCharacteristics.isSequential;
-  }
-
-
-  var loopEntries = [
-    {
-      id: 'toggle-parallel-mi',
-      className: 'bpmn-icon-parallel-mi-marker',
-      title: translate('Parallel Multi Instance'),
-      active: isParallel,
-      action: toggleLoopEntry,
-      options: {
-        loopCharacteristics: 'bpmn:MultiInstanceLoopCharacteristics',
-        isSequential: false
-      }
-    },
-    {
-      id: 'toggle-sequential-mi',
-      className: 'bpmn-icon-sequential-mi-marker',
-      title: translate('Sequential Multi Instance'),
-      active: isSequential,
-      action: toggleLoopEntry,
-      options: {
-        loopCharacteristics: 'bpmn:MultiInstanceLoopCharacteristics',
-        isSequential: true
-      }
-    },
-    {
-      id: 'toggle-loop',
-      className: 'bpmn-icon-loop-marker',
-      title: translate('Loop'),
-      active: isLoop,
-      action: toggleLoopEntry,
-      options: {
-        loopCharacteristics: 'bpmn:StandardLoopCharacteristics'
-      }
-    }
-  ];
-  return loopEntries;
 };
 
 /**

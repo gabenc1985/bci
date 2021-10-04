@@ -25,11 +25,9 @@ import { map, switchMap } from 'rxjs/operators';
 //import * as BpmnJS from 'bpmn-js/dist/bpmn-modeler.production.min.js';
 import BpmnModeler from 'bpmn-js/lib/Modeler';
 import { from, Observable, Subscription } from 'rxjs';
-import customModule from '../custom';
 import propertiesPanelModule from 'bpmn-js-properties-panel';
 import bpmnPropertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/bpmn';
 import magicPropertiesProviderModule from '../provider/magic';
-import magicModdleDescriptor from '../descriptors/magic.json';
 import { UserService } from 'app/core/user/user.service';
 import { ControlesService } from 'app/provider/controles.service';
 
@@ -116,14 +114,10 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
       },
       
       additionalModules: [
-        customModule,
         propertiesPanelModule,
         bpmnPropertiesProviderModule,
        magicPropertiesProviderModule
-      ],
-      moddleExtensions: {
-        magic: magicModdleDescriptor
-      }
+      ]
 
     });
 

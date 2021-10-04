@@ -10,10 +10,9 @@ var LOW_PRIORITY = 500;
 function createMagicTabGroups(element, translate, datos) {
 
   // Create a group called "Black Magic".
-
   var blackMagicGroup = {
     id: 'black-magic',
-    label: 'Black MagicX',
+    label: 'Propiedades',
     entries: [],
   };
 
@@ -29,13 +28,11 @@ function createMagicTabGroups(element, translate, datos) {
 
 export default function MagicPropertiesProvider(propertiesPanel, translate) {
 
-  console.log(propertiesPanel.dataAdicional)
+  let datos = getDatos();
   // Register our custom magic properties provider.
   // Use a lower priority to ensure it is loaded after the basic BPMN properties.
   propertiesPanel.registerProvider(LOW_PRIORITY, this);
 
-  let datos = getDatos();
-  console.log(datos)
   this.getTabs = function (element) {
 
     return function (entries) {
@@ -43,37 +40,18 @@ export default function MagicPropertiesProvider(propertiesPanel, translate) {
       // Add the "magic" tab
       var magicTab = {
         id: 'magic',
-        label: 'Magic',
+        label: 'Propiedades',
         groups: createMagicTabGroups(element, translate, datos)
       };
 
       entries.push(magicTab);
-
-      // Show general + "magic" tab
       return entries;
 
     };
   };
 }
 
-async function getDatabases() {
-
-  let url = "./assets/databases.json";
-  //Funcion que hace llamada al servidor para pedir los datos EEG de la base de datos seleccionada
-
-  //Enviamos el JSON de los bloques, para que el servidor los pueda procesar
-  console.log('request database ...');
-  let respuesta = await fetch(url, {
-    method: 'GET',
-  }).then(response => response.json()).then(text => {
-
-    return text;
-  });
-  return respuesta;
-};
-
 function getDatos() {
-
   let variable = function (element, node) {
     var arrValues = []
     $.ajax({

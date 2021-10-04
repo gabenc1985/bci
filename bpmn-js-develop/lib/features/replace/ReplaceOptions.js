@@ -8,55 +8,11 @@ export var START_EVENT = [
     }
   },
   {
-    label: 'Intermediate Throw Event',
-    actionName: 'replace-with-none-intermediate-throwing',
-    className: 'bpmn-icon-intermediate-event-none',
-    target: {
-      type: 'bpmn:IntermediateThrowEvent'
-    }
-  },
-  {
     label: 'End Event',
     actionName: 'replace-with-none-end',
     className: 'bpmn-icon-end-event-none',
     target: {
       type: 'bpmn:EndEvent'
-    }
-  },
-  {
-    label: 'Message Start Event',
-    actionName: 'replace-with-message-start',
-    className: 'bpmn-icon-start-event-message',
-    target: {
-      type: 'bpmn:StartEvent',
-      eventDefinitionType: 'bpmn:MessageEventDefinition'
-    }
-  },
-  {
-    label: 'Timer Start Event',
-    actionName: 'replace-with-timer-start',
-    className: 'bpmn-icon-start-event-timer',
-    target: {
-      type: 'bpmn:StartEvent',
-      eventDefinitionType: 'bpmn:TimerEventDefinition'
-    }
-  },
-  {
-    label: 'Conditional Start Event',
-    actionName: 'replace-with-conditional-start',
-    className: 'bpmn-icon-start-event-condition',
-    target: {
-      type: 'bpmn:StartEvent',
-      eventDefinitionType: 'bpmn:ConditionalEventDefinition'
-    }
-  },
-  {
-    label: 'Signal Start Event',
-    actionName: 'replace-with-signal-start',
-    className: 'bpmn-icon-start-event-signal',
-    target: {
-      type: 'bpmn:StartEvent',
-      eventDefinitionType: 'bpmn:SignalEventDefinition'
     }
   }
 ];
@@ -68,145 +24,6 @@ export var START_EVENT_SUB_PROCESS = [
     className: 'bpmn-icon-start-event-none',
     target: {
       type: 'bpmn:StartEvent'
-    }
-  },
-  {
-    label: 'Intermediate Throw Event',
-    actionName: 'replace-with-none-intermediate-throwing',
-    className: 'bpmn-icon-intermediate-event-none',
-    target: {
-      type: 'bpmn:IntermediateThrowEvent'
-    }
-  },
-  {
-    label: 'End Event',
-    actionName: 'replace-with-none-end',
-    className: 'bpmn-icon-end-event-none',
-    target: {
-      type: 'bpmn:EndEvent'
-    }
-  }
-];
-
-export var INTERMEDIATE_EVENT = [
-  {
-    label: 'Start Event',
-    actionName: 'replace-with-none-start',
-    className: 'bpmn-icon-start-event-none',
-    target: {
-      type: 'bpmn:StartEvent'
-    }
-  },
-  {
-    label: 'Intermediate Throw Event',
-    actionName: 'replace-with-none-intermediate-throw',
-    className: 'bpmn-icon-intermediate-event-none',
-    target: {
-      type: 'bpmn:IntermediateThrowEvent'
-    }
-  },
-  {
-    label: 'End Event',
-    actionName: 'replace-with-none-end',
-    className: 'bpmn-icon-end-event-none',
-    target: {
-      type: 'bpmn:EndEvent'
-    }
-  },
-  {
-    label: 'Message Intermediate Catch Event',
-    actionName: 'replace-with-message-intermediate-catch',
-    className: 'bpmn-icon-intermediate-event-catch-message',
-    target: {
-      type: 'bpmn:IntermediateCatchEvent',
-      eventDefinitionType: 'bpmn:MessageEventDefinition'
-    }
-  },
-  {
-    label: 'Message Intermediate Throw Event',
-    actionName: 'replace-with-message-intermediate-throw',
-    className: 'bpmn-icon-intermediate-event-throw-message',
-    target: {
-      type: 'bpmn:IntermediateThrowEvent',
-      eventDefinitionType: 'bpmn:MessageEventDefinition'
-    }
-  },
-  {
-    label: 'Timer Intermediate Catch Event',
-    actionName: 'replace-with-timer-intermediate-catch',
-    className: 'bpmn-icon-intermediate-event-catch-timer',
-    target: {
-      type: 'bpmn:IntermediateCatchEvent',
-      eventDefinitionType: 'bpmn:TimerEventDefinition'
-    }
-  },
-  {
-    label: 'Escalation Intermediate Throw Event',
-    actionName: 'replace-with-escalation-intermediate-throw',
-    className: 'bpmn-icon-intermediate-event-throw-escalation',
-    target: {
-      type: 'bpmn:IntermediateThrowEvent',
-      eventDefinitionType: 'bpmn:EscalationEventDefinition'
-    }
-  },
-  {
-    label: 'Conditional Intermediate Catch Event',
-    actionName: 'replace-with-conditional-intermediate-catch',
-    className: 'bpmn-icon-intermediate-event-catch-condition',
-    target: {
-      type: 'bpmn:IntermediateCatchEvent',
-      eventDefinitionType: 'bpmn:ConditionalEventDefinition'
-    }
-  },
-  {
-    label: 'Link Intermediate Catch Event',
-    actionName: 'replace-with-link-intermediate-catch',
-    className: 'bpmn-icon-intermediate-event-catch-link',
-    target: {
-      type: 'bpmn:IntermediateCatchEvent',
-      eventDefinitionType: 'bpmn:LinkEventDefinition',
-      eventDefinitionAttrs: {
-        name: ''
-      }
-    }
-  },
-  {
-    label: 'Link Intermediate Throw Event',
-    actionName: 'replace-with-link-intermediate-throw',
-    className: 'bpmn-icon-intermediate-event-throw-link',
-    target: {
-      type: 'bpmn:IntermediateThrowEvent',
-      eventDefinitionType: 'bpmn:LinkEventDefinition',
-      eventDefinitionAttrs: {
-        name: ''
-      }
-    }
-  },
-  {
-    label: 'Compensation Intermediate Throw Event',
-    actionName: 'replace-with-compensation-intermediate-throw',
-    className: 'bpmn-icon-intermediate-event-throw-compensation',
-    target: {
-      type: 'bpmn:IntermediateThrowEvent',
-      eventDefinitionType: 'bpmn:CompensateEventDefinition'
-    }
-  },
-  {
-    label: 'Signal Intermediate Catch Event',
-    actionName: 'replace-with-signal-intermediate-catch',
-    className: 'bpmn-icon-intermediate-event-catch-signal',
-    target: {
-      type: 'bpmn:IntermediateCatchEvent',
-      eventDefinitionType: 'bpmn:SignalEventDefinition'
-    }
-  },
-  {
-    label: 'Signal Intermediate Throw Event',
-    actionName: 'replace-with-signal-intermediate-throw',
-    className: 'bpmn-icon-intermediate-event-throw-signal',
-    target: {
-      type: 'bpmn:IntermediateThrowEvent',
-      eventDefinitionType: 'bpmn:SignalEventDefinition'
     }
   }
 ];
@@ -221,82 +38,11 @@ export var END_EVENT = [
     }
   },
   {
-    label: 'Intermediate Throw Event',
-    actionName: 'replace-with-none-intermediate-throw',
-    className: 'bpmn-icon-intermediate-event-none',
-    target: {
-      type: 'bpmn:IntermediateThrowEvent'
-    }
-  },
-  {
     label: 'End Event',
     actionName: 'replace-with-none-end',
     className: 'bpmn-icon-end-event-none',
     target: {
       type: 'bpmn:EndEvent'
-    }
-  },
-  {
-    label: 'Message End Event',
-    actionName: 'replace-with-message-end',
-    className: 'bpmn-icon-end-event-message',
-    target: {
-      type: 'bpmn:EndEvent',
-      eventDefinitionType: 'bpmn:MessageEventDefinition'
-    }
-  },
-  {
-    label: 'Escalation End Event',
-    actionName: 'replace-with-escalation-end',
-    className: 'bpmn-icon-end-event-escalation',
-    target: {
-      type: 'bpmn:EndEvent',
-      eventDefinitionType: 'bpmn:EscalationEventDefinition'
-    }
-  },
-  {
-    label: 'Error End Event',
-    actionName: 'replace-with-error-end',
-    className: 'bpmn-icon-end-event-error',
-    target: {
-      type: 'bpmn:EndEvent',
-      eventDefinitionType: 'bpmn:ErrorEventDefinition'
-    }
-  },
-  {
-    label: 'Cancel End Event',
-    actionName: 'replace-with-cancel-end',
-    className: 'bpmn-icon-end-event-cancel',
-    target: {
-      type: 'bpmn:EndEvent',
-      eventDefinitionType: 'bpmn:CancelEventDefinition'
-    }
-  },
-  {
-    label: 'Compensation End Event',
-    actionName: 'replace-with-compensation-end',
-    className: 'bpmn-icon-end-event-compensation',
-    target: {
-      type: 'bpmn:EndEvent',
-      eventDefinitionType: 'bpmn:CompensateEventDefinition'
-    }
-  },
-  {
-    label: 'Signal End Event',
-    actionName: 'replace-with-signal-end',
-    className: 'bpmn-icon-end-event-signal',
-    target: {
-      type: 'bpmn:EndEvent',
-      eventDefinitionType: 'bpmn:SignalEventDefinition'
-    }
-  },
-  {
-    label: 'Terminate End Event',
-    actionName: 'replace-with-terminate-end',
-    className: 'bpmn-icon-end-event-terminate',
-    target: {
-      type: 'bpmn:EndEvent',
-      eventDefinitionType: 'bpmn:TerminateEventDefinition'
     }
   }
 ];
@@ -308,40 +54,6 @@ export var GATEWAY = [
     className: 'bpmn-icon-gateway-xor',
     target: {
       type: 'bpmn:ExclusiveGateway'
-    }
-  },
-  {
-    label: 'Parallel Gateway',
-    actionName: 'replace-with-parallel-gateway',
-    className: 'bpmn-icon-gateway-parallel',
-    target: {
-      type: 'bpmn:ParallelGateway'
-    }
-  },
-  {
-    label: 'Inclusive Gateway',
-    actionName: 'replace-with-inclusive-gateway',
-    className: 'bpmn-icon-gateway-or',
-    target: {
-      type: 'bpmn:InclusiveGateway'
-    }
-  },
-  {
-    label: 'Complex Gateway',
-    actionName: 'replace-with-complex-gateway',
-    className: 'bpmn-icon-gateway-complex',
-    target: {
-      type: 'bpmn:ComplexGateway'
-    }
-  },
-  {
-    label: 'Event based Gateway',
-    actionName: 'replace-with-event-based-gateway',
-    className: 'bpmn-icon-gateway-eventbased',
-    target: {
-      type: 'bpmn:EventBasedGateway',
-      instantiate: false,
-      eventGatewayType: 'Exclusive'
     }
   }
 
@@ -369,179 +81,10 @@ export var GATEWAY = [
   //   }
   // }
 ];
-
-export var SUBPROCESS_EXPANDED = [
-  {
-    label: 'Transaction',
-    actionName: 'replace-with-transaction',
-    className: 'bpmn-icon-transaction',
-    target: {
-      type: 'bpmn:Transaction',
-      isExpanded: true
-    }
-  },
-  {
-    label: 'Event Sub Process',
-    actionName: 'replace-with-event-subprocess',
-    className: 'bpmn-icon-event-subprocess-expanded',
-    target: {
-      type: 'bpmn:SubProcess',
-      triggeredByEvent: true,
-      isExpanded: true
-    }
-  },
-  {
-    label: 'Sub Process (collapsed)',
-    actionName: 'replace-with-collapsed-subprocess',
-    className: 'bpmn-icon-subprocess-collapsed',
-    target: {
-      type: 'bpmn:SubProcess',
-      isExpanded: false
-    }
-  }
-];
-
-export var TRANSACTION = [
-  {
-    label: 'Sub Process',
-    actionName: 'replace-with-subprocess',
-    className: 'bpmn-icon-subprocess-expanded',
-    target: {
-      type: 'bpmn:SubProcess',
-      isExpanded: true
-    }
-  },
-  {
-    label: 'Event Sub Process',
-    actionName: 'replace-with-event-subprocess',
-    className: 'bpmn-icon-event-subprocess-expanded',
-    target: {
-      type: 'bpmn:SubProcess',
-      triggeredByEvent: true,
-      isExpanded: true
-    }
-  }
-];
-
-export var EVENT_SUB_PROCESS = [
-  {
-    label: 'Sub Process',
-    actionName: 'replace-with-subprocess',
-    className: 'bpmn-icon-subprocess-expanded',
-    target: {
-      type: 'bpmn:SubProcess',
-      isExpanded: true
-    }
-  },
-  {
-    label: 'Transaction',
-    actionName: 'replace-with-transaction',
-    className: 'bpmn-icon-transaction',
-    target: {
-      type: 'bpmn:Transaction',
-      isExpanded: true
-    }
-  }
-];
-
-export var TASK = [
-  {
-    label: 'Task',
-    actionName: 'replace-with-task',
-    className: 'bpmn-icon-task',
-    target: {
-      type: 'bpmn:Task'
-    }
-  },
-  {
-    label: 'Send Task',
-    actionName: 'replace-with-send-task',
-    className: 'bpmn-icon-send',
-    target: {
-      type: 'bpmn:SendTask'
-    }
-  },
-  {
-    label: 'Receive Task',
-    actionName: 'replace-with-receive-task',
-    className: 'bpmn-icon-receive',
-    target: {
-      type: 'bpmn:ReceiveTask'
-    }
-  },
-  {
-    label: 'User Task',
-    actionName: 'replace-with-user-task',
-    className: 'bpmn-icon-user',
-    target: {
-      type: 'bpmn:UserTask'
-    }
-  },
-  {
-    label: 'Manual Task',
-    actionName: 'replace-with-manual-task',
-    className: 'bpmn-icon-manual',
-    target: {
-      type: 'bpmn:ManualTask'
-    }
-  },
-  {
-    label: 'Business Rule Task',
-    actionName: 'replace-with-rule-task',
-    className: 'bpmn-icon-business-rule',
-    target: {
-      type: 'bpmn:BusinessRuleTask'
-    }
-  },
-  {
-    label: 'Service Task',
-    actionName: 'replace-with-service-task',
-    className: 'bpmn-icon-service',
-    target: {
-      type: 'bpmn:ServiceTask'
-    }
-  },
-  {
-    label: 'Script Task',
-    actionName: 'replace-with-script-task',
-    className: 'bpmn-icon-script',
-    target: {
-      type: 'bpmn:ScriptTask'
-    }
-  },
-  {
-    label: 'Call Activity',
-    actionName: 'replace-with-call-activity',
-    className: 'bpmn-icon-call-activity',
-    target: {
-      type: 'bpmn:CallActivity'
-    }
-  },
-  {
-    label: 'Sub Process (collapsed)',
-    actionName: 'replace-with-collapsed-subprocess',
-    className: 'bpmn-icon-subprocess-collapsed',
-    target: {
-      type: 'bpmn:SubProcess',
-      isExpanded: false
-    }
-  },
-  {
-    label: 'Sub Process (expanded)',
-    actionName: 'replace-with-expanded-subprocess',
-    className: 'bpmn-icon-subprocess-expanded',
-    target: {
-      type: 'bpmn:SubProcess',
-      isExpanded: true
-    }
-  }
-];
-
-
 export var TASK_BCI = [
   {
     label: 'Adquisición BCI Competición',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-bci',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCICompetitionTask'
@@ -549,7 +92,7 @@ export var TASK_BCI = [
   },
   {
     label: 'Adquisición Random',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-random',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIAdquisitionRandomTask'
@@ -559,7 +102,7 @@ export var TASK_BCI = [
 export var TASK_BCI_PRE = [
   {
     label: 'Normalización',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-pre',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIPreNormalizacionTask'
@@ -567,7 +110,7 @@ export var TASK_BCI_PRE = [
   },
   {
     label: 'Seleccionar canales',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-can',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIPreSeleCanalesTask'
@@ -575,7 +118,7 @@ export var TASK_BCI_PRE = [
   },
   {
     label: 'Cortar',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-cortar',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCICPreCortarTask'
@@ -583,7 +126,7 @@ export var TASK_BCI_PRE = [
   },
   {
     label: 'Filtro pasa banda',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-pasa-banda',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIPreFiltroPasaBandaTask'
@@ -591,7 +134,7 @@ export var TASK_BCI_PRE = [
   },
   {
     label: 'Filtro pasa bajos',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-pasa-bajos',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIPreFiltroPasaBajosTask'
@@ -599,7 +142,7 @@ export var TASK_BCI_PRE = [
   },
   {
     label: 'Filtro pasa altos',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-pasa-altos',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIPreFiltroPasaAltosTask'
@@ -607,7 +150,7 @@ export var TASK_BCI_PRE = [
   },
   {
     label: 'Filtro CAR',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-filtro-car',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIPreFiltroCarTask'
@@ -615,7 +158,7 @@ export var TASK_BCI_PRE = [
   },
   {
     label: 'Seleccionar Trials',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-trials',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIPreTrialsTask'
@@ -623,7 +166,7 @@ export var TASK_BCI_PRE = [
   },
   {
     label: 'Concatenar',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-concat',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIPreConcatenarTask'
@@ -631,7 +174,7 @@ export var TASK_BCI_PRE = [
   },
   {
     label: 'Split',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-split',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIPreSplitTask'
@@ -641,7 +184,7 @@ export var TASK_BCI_PRE = [
 export var TASK_BCI_EXT = [
   {
     label: 'Hjorth',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-hjorth',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIExtHjorthTask'
@@ -649,7 +192,7 @@ export var TASK_BCI_EXT = [
   },
   {
     label: 'Estadisticos',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-estadis',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIExtEstadisticoTask'
@@ -657,7 +200,7 @@ export var TASK_BCI_EXT = [
   },
   {
     label: 'Transformada de Fourier',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-fourier',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIExtTranFourierTask'
@@ -665,7 +208,7 @@ export var TASK_BCI_EXT = [
   },
   {
     label: 'Método de Burg',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-burg',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIExtBurgTask'
@@ -673,7 +216,7 @@ export var TASK_BCI_EXT = [
   },
   {
     label: 'PSD Welch',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-psd',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIExtPsdWelchTask'
@@ -681,7 +224,7 @@ export var TASK_BCI_EXT = [
   },
   {
     label: 'AAR',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-aar',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIExtAARTask'
@@ -689,7 +232,7 @@ export var TASK_BCI_EXT = [
   },
   {
     label: 'Wavelets',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-wavelets',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIExtWaveletsTask'
@@ -697,7 +240,7 @@ export var TASK_BCI_EXT = [
   },
   {
     label: 'Concatenar features',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-features',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIExtConcatFeaturesTask'
@@ -705,7 +248,7 @@ export var TASK_BCI_EXT = [
   },
   {
     label: 'PCA',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-pca',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIExtPcaTask'
@@ -713,7 +256,7 @@ export var TASK_BCI_EXT = [
   },
   {
     label: 'Fractal',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-fractal',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIExtFractalTask'
@@ -721,7 +264,7 @@ export var TASK_BCI_EXT = [
   },
   {
     label: 'Entropia',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-entropia',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIExtEntropiaTask'
@@ -731,7 +274,7 @@ export var TASK_BCI_EXT = [
 export var TASK_BCI_CLA = [
   {
     label: 'SVM',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-cla',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIClaSvmTask'
@@ -739,7 +282,7 @@ export var TASK_BCI_CLA = [
   },
   {
     label: 'LDA',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-lda',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIClaLdaTask'
@@ -747,7 +290,7 @@ export var TASK_BCI_CLA = [
   },
   {
     label: 'KNN',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-knn',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIClaKnnTask'
@@ -755,7 +298,7 @@ export var TASK_BCI_CLA = [
   },
   {
     label: 'Random Forest',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-forest',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIClaRandomForestTask'
@@ -763,273 +306,10 @@ export var TASK_BCI_CLA = [
   },
   {
     label: 'Red neuronal simple',
-    actionName: 'replace-with-service-task',
+    actionName: 'replace-with-task-simple-neuronal',
     className: 'bpmn-icon-service',
     target: {
       type: 'bpmn:BCIClaRedNeuronalTask'
-    }
-  }
-];
-
-export var DATA_OBJECT_REFERENCE = [
-  {
-    label: 'Data Store Reference',
-    actionName: 'replace-with-data-store-reference',
-    className: 'bpmn-icon-data-store',
-    target: {
-      type: 'bpmn:DataStoreReference'
-    }
-  }
-];
-
-export var DATA_STORE_REFERENCE = [
-  {
-    label: 'Data Object Reference',
-    actionName: 'replace-with-data-object-reference',
-    className: 'bpmn-icon-data-object',
-    target: {
-      type: 'bpmn:DataObjectReference'
-    }
-  }
-];
-
-export var BOUNDARY_EVENT = [
-  {
-    label: 'Message Boundary Event',
-    actionName: 'replace-with-message-boundary',
-    className: 'bpmn-icon-intermediate-event-catch-message',
-    target: {
-      type: 'bpmn:BoundaryEvent',
-      eventDefinitionType: 'bpmn:MessageEventDefinition'
-    }
-  },
-  {
-    label: 'Timer Boundary Event',
-    actionName: 'replace-with-timer-boundary',
-    className: 'bpmn-icon-intermediate-event-catch-timer',
-    target: {
-      type: 'bpmn:BoundaryEvent',
-      eventDefinitionType: 'bpmn:TimerEventDefinition'
-    }
-  },
-  {
-    label: 'Escalation Boundary Event',
-    actionName: 'replace-with-escalation-boundary',
-    className: 'bpmn-icon-intermediate-event-catch-escalation',
-    target: {
-      type: 'bpmn:BoundaryEvent',
-      eventDefinitionType: 'bpmn:EscalationEventDefinition'
-    }
-  },
-  {
-    label: 'Conditional Boundary Event',
-    actionName: 'replace-with-conditional-boundary',
-    className: 'bpmn-icon-intermediate-event-catch-condition',
-    target: {
-      type: 'bpmn:BoundaryEvent',
-      eventDefinitionType: 'bpmn:ConditionalEventDefinition'
-    }
-  },
-  {
-    label: 'Error Boundary Event',
-    actionName: 'replace-with-error-boundary',
-    className: 'bpmn-icon-intermediate-event-catch-error',
-    target: {
-      type: 'bpmn:BoundaryEvent',
-      eventDefinitionType: 'bpmn:ErrorEventDefinition'
-    }
-  },
-  {
-    label: 'Cancel Boundary Event',
-    actionName: 'replace-with-cancel-boundary',
-    className: 'bpmn-icon-intermediate-event-catch-cancel',
-    target: {
-      type: 'bpmn:BoundaryEvent',
-      eventDefinitionType: 'bpmn:CancelEventDefinition'
-    }
-  },
-  {
-    label: 'Signal Boundary Event',
-    actionName: 'replace-with-signal-boundary',
-    className: 'bpmn-icon-intermediate-event-catch-signal',
-    target: {
-      type: 'bpmn:BoundaryEvent',
-      eventDefinitionType: 'bpmn:SignalEventDefinition'
-    }
-  },
-  {
-    label: 'Compensation Boundary Event',
-    actionName: 'replace-with-compensation-boundary',
-    className: 'bpmn-icon-intermediate-event-catch-compensation',
-    target: {
-      type: 'bpmn:BoundaryEvent',
-      eventDefinitionType: 'bpmn:CompensateEventDefinition'
-    }
-  },
-  {
-    label: 'Message Boundary Event (non-interrupting)',
-    actionName: 'replace-with-non-interrupting-message-boundary',
-    className: 'bpmn-icon-intermediate-event-catch-non-interrupting-message',
-    target: {
-      type: 'bpmn:BoundaryEvent',
-      eventDefinitionType: 'bpmn:MessageEventDefinition',
-      cancelActivity: false
-    }
-  },
-  {
-    label: 'Timer Boundary Event (non-interrupting)',
-    actionName: 'replace-with-non-interrupting-timer-boundary',
-    className: 'bpmn-icon-intermediate-event-catch-non-interrupting-timer',
-    target: {
-      type: 'bpmn:BoundaryEvent',
-      eventDefinitionType: 'bpmn:TimerEventDefinition',
-      cancelActivity: false
-    }
-  },
-  {
-    label: 'Escalation Boundary Event (non-interrupting)',
-    actionName: 'replace-with-non-interrupting-escalation-boundary',
-    className: 'bpmn-icon-intermediate-event-catch-non-interrupting-escalation',
-    target: {
-      type: 'bpmn:BoundaryEvent',
-      eventDefinitionType: 'bpmn:EscalationEventDefinition',
-      cancelActivity: false
-    }
-  },
-  {
-    label: 'Conditional Boundary Event (non-interrupting)',
-    actionName: 'replace-with-non-interrupting-conditional-boundary',
-    className: 'bpmn-icon-intermediate-event-catch-non-interrupting-condition',
-    target: {
-      type: 'bpmn:BoundaryEvent',
-      eventDefinitionType: 'bpmn:ConditionalEventDefinition',
-      cancelActivity: false
-    }
-  },
-  {
-    label: 'Signal Boundary Event (non-interrupting)',
-    actionName: 'replace-with-non-interrupting-signal-boundary',
-    className: 'bpmn-icon-intermediate-event-catch-non-interrupting-signal',
-    target: {
-      type: 'bpmn:BoundaryEvent',
-      eventDefinitionType: 'bpmn:SignalEventDefinition',
-      cancelActivity: false
-    }
-  }
-];
-
-export var EVENT_SUB_PROCESS_START_EVENT = [
-  {
-    label: 'Message Start Event',
-    actionName: 'replace-with-message-start',
-    className: 'bpmn-icon-start-event-message',
-    target: {
-      type: 'bpmn:StartEvent',
-      eventDefinitionType: 'bpmn:MessageEventDefinition'
-    }
-  },
-  {
-    label: 'Timer Start Event',
-    actionName: 'replace-with-timer-start',
-    className: 'bpmn-icon-start-event-timer',
-    target: {
-      type: 'bpmn:StartEvent',
-      eventDefinitionType: 'bpmn:TimerEventDefinition'
-    }
-  },
-  {
-    label: 'Conditional Start Event',
-    actionName: 'replace-with-conditional-start',
-    className: 'bpmn-icon-start-event-condition',
-    target: {
-      type: 'bpmn:StartEvent',
-      eventDefinitionType: 'bpmn:ConditionalEventDefinition'
-    }
-  },
-  {
-    label: 'Signal Start Event',
-    actionName: 'replace-with-signal-start',
-    className: 'bpmn-icon-start-event-signal',
-    target: {
-      type: 'bpmn:StartEvent',
-      eventDefinitionType: 'bpmn:SignalEventDefinition'
-    }
-  },
-  {
-    label: 'Error Start Event',
-    actionName: 'replace-with-error-start',
-    className: 'bpmn-icon-start-event-error',
-    target: {
-      type: 'bpmn:StartEvent',
-      eventDefinitionType: 'bpmn:ErrorEventDefinition'
-    }
-  },
-  {
-    label: 'Escalation Start Event',
-    actionName: 'replace-with-escalation-start',
-    className: 'bpmn-icon-start-event-escalation',
-    target: {
-      type: 'bpmn:StartEvent',
-      eventDefinitionType: 'bpmn:EscalationEventDefinition'
-    }
-  },
-  {
-    label: 'Compensation Start Event',
-    actionName: 'replace-with-compensation-start',
-    className: 'bpmn-icon-start-event-compensation',
-    target: {
-      type: 'bpmn:StartEvent',
-      eventDefinitionType: 'bpmn:CompensateEventDefinition'
-    }
-  },
-  {
-    label: 'Message Start Event (non-interrupting)',
-    actionName: 'replace-with-non-interrupting-message-start',
-    className: 'bpmn-icon-start-event-non-interrupting-message',
-    target: {
-      type: 'bpmn:StartEvent',
-      eventDefinitionType: 'bpmn:MessageEventDefinition',
-      isInterrupting: false
-    }
-  },
-  {
-    label: 'Timer Start Event (non-interrupting)',
-    actionName: 'replace-with-non-interrupting-timer-start',
-    className: 'bpmn-icon-start-event-non-interrupting-timer',
-    target: {
-      type: 'bpmn:StartEvent',
-      eventDefinitionType: 'bpmn:TimerEventDefinition',
-      isInterrupting: false
-    }
-  },
-  {
-    label: 'Conditional Start Event (non-interrupting)',
-    actionName: 'replace-with-non-interrupting-conditional-start',
-    className: 'bpmn-icon-start-event-non-interrupting-condition',
-    target: {
-      type: 'bpmn:StartEvent',
-      eventDefinitionType: 'bpmn:ConditionalEventDefinition',
-      isInterrupting: false
-    }
-  },
-  {
-    label: 'Signal Start Event (non-interrupting)',
-    actionName: 'replace-with-non-interrupting-signal-start',
-    className: 'bpmn-icon-start-event-non-interrupting-signal',
-    target: {
-      type: 'bpmn:StartEvent',
-      eventDefinitionType: 'bpmn:SignalEventDefinition',
-      isInterrupting: false
-    }
-  },
-  {
-    label: 'Escalation Start Event (non-interrupting)',
-    actionName: 'replace-with-non-interrupting-escalation-start',
-    className: 'bpmn-icon-start-event-non-interrupting-escalation',
-    target: {
-      type: 'bpmn:StartEvent',
-      eventDefinitionType: 'bpmn:EscalationEventDefinition',
-      isInterrupting: false
     }
   }
 ];

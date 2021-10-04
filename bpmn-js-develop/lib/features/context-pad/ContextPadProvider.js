@@ -259,42 +259,6 @@ ContextPadProvider.prototype.getContextPadEntries = function(element) {
   }
 
   if (is(businessObject, 'bpmn:FlowNode')) {
-
-    if (is(businessObject, 'bpmn:EventBasedGateway')) {
-
-      assign(actions, {
-        'append.receive-task': appendAction(
-          'bpmn:ReceiveTask',
-          'bpmn-icon-receive-task',
-          translate('Append ReceiveTask')
-        ),
-        'append.message-intermediate-event': appendAction(
-          'bpmn:IntermediateCatchEvent',
-          'bpmn-icon-intermediate-event-catch-message',
-          translate('Append MessageIntermediateCatchEvent'),
-          { eventDefinitionType: 'bpmn:MessageEventDefinition' }
-        ),
-        'append.timer-intermediate-event': appendAction(
-          'bpmn:IntermediateCatchEvent',
-          'bpmn-icon-intermediate-event-catch-timer',
-          translate('Append TimerIntermediateCatchEvent'),
-          { eventDefinitionType: 'bpmn:TimerEventDefinition' }
-        ),
-        'append.condition-intermediate-event': appendAction(
-          'bpmn:IntermediateCatchEvent',
-          'bpmn-icon-intermediate-event-catch-condition',
-          translate('Append ConditionIntermediateCatchEvent'),
-          { eventDefinitionType: 'bpmn:ConditionalEventDefinition' }
-        ),
-        'append.signal-intermediate-event': appendAction(
-          'bpmn:IntermediateCatchEvent',
-          'bpmn-icon-intermediate-event-catch-signal',
-          translate('Append SignalIntermediateCatchEvent'),
-          { eventDefinitionType: 'bpmn:SignalEventDefinition' }
-        )
-      });
-    } else
-
     if (isEventType(businessObject, 'bpmn:BoundaryEvent', 'bpmn:CompensateEventDefinition')) {
 
       assign(actions, {
@@ -325,16 +289,6 @@ ContextPadProvider.prototype.getContextPadEntries = function(element) {
           'bpmn:ExclusiveGateway',
           'bpmn-icon-gateway-none',
           translate('Append Gateway')
-        ),
-        'append.append-task': appendAction(
-          'bpmn:Task',
-          'bpmn-icon-task',
-          translate('Append Task')
-        ),
-        'append.intermediate-event': appendAction(
-          'bpmn:IntermediateThrowEvent',
-          'bpmn-icon-intermediate-event-none',
-          translate('Append Intermediate/Boundary Event')
         )
       });
     }
