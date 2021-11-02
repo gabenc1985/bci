@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+      routes:
+      - id: componente-service
+        uri: lb://componente-service
+        predicates:
+        - Path=/componente/**
+        filters:
+            - RewritePath=/componente(?<segment>.*), /$\{segment}
+      - id: diagrama-service
+        uri: lb://diagrama-service
+        predicates:
+        - Path=/diagrama/**
+        filters:
+            - RewritePath=/diagrama(?<segment>.*), /$\{segment}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8061/eureka}
+    register-with-eureka: false
+  instance:
+    preferIpAddress: true
+management:
+   endpoint:
+      gateway:
+         enabled: true
+   endpoints:
+      web:
+         exposure:
+            include: gateway

@@ -109,7 +109,7 @@ PaletteProvider.prototype.getPaletteEntries = function(element) {
     'create.task-competition': createAction(
       'bpmn:BCICompetitionTask',
       'adquisicion',
-      'bpmn-icon-task',
+      'bpmn-icon-competition-task',
       translate('Adquisición BCI Competición')
     ),
     'create.task-random': createAction(

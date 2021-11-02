@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: diagrama-service
+server:
+  port: 0
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8061/eureka}
+  instance:
+    preferIpAddress: true

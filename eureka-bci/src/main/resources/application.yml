@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: eureka-server
+ 
+#Tomcat Embedded Server Configuration
+server: 
+  port: 8061
+ 
+#Eureka Configuration Properties
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8061/eureka}

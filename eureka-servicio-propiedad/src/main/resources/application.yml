@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: componente-service
+  data:
+    mongodb:
+      uri: mongodb://bci-user:bci-password@127.0.0.1:27017/bci
+server:
+  port: 8091
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8061/eureka}
+  instance:
+    preferIpAddress: true
+    

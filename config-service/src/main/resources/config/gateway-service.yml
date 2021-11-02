@@ -1,0 +1,37 @@
+server:
+  port: 8060
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: componente-service
+        uri: lb://componente-service
+        predicates:
+        - Path=/catalogo/**
+      - id: diagrama-service
+        uri: lb://diagrama-service
+        predicates:
+        - Path=/diagrama/**
+        filters:
+        - RewritePath=/diagrama/(?.*), /$\{path}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8061/eureka}
+    register-with-eureka: false
+  instance:
+    preferIpAddress: true
+logging:
+  pattern: 
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+management:
+   endpoint:
+      gateway:
+         enabled: true
+   endpoints:
+      web:
+         exposure:
+            include: gateway
