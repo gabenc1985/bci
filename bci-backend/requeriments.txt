@@ -1,3 +1,4 @@
+jsonpicklepip 
 numpy
 sklearn
 h5py

@@ -1,4 +1,4 @@
-package ec.gbc.house.servicio.to;
+package ec.gbc.house.servicio.propiedad.to;
 
 import java.util.List;
 import java.util.Map;
@@ -17,9 +17,14 @@ public class CatalogoTo {
 	
 	@JsonProperty(value = "name")
 	private String nombre;
-	
+
+	@JsonProperty(value = "description")
+	private String description;
+
+	@JsonProperty(value = "list")
 	private Map<String,List<ListaTo>> listas;
-	
-	private Map<String,String> atributos;
+
+	@JsonProperty(value = "attributes")
+	private List<ListaTo> atributos;
 
 }

@@ -1,4 +1,4 @@
-package ec.gbc.house.servicio.to;
+package ec.gbc.house.servicio.propiedad.to;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -15,5 +15,9 @@ public class ListaTo {
 	@JsonProperty(value = "value")
 	@Field("value")
 	private String valor;
+
+	@JsonProperty(value = "type")
+	@Field("type")
+	private String tipo;
 
 }

@@ -3,7 +3,7 @@ package ec.gbc.house.servicio.propiedad.model;
 import java.util.List;
 import java.util.Map;
 
-import ec.gbc.house.servicio.to.ListaTo;
+import ec.gbc.house.servicio.propiedad.to.ListaTo;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import lombok.Data;
 
-@Document(value = "descripcion")
+@Document(value = "componentes")
 @Data
 public class Descripcion {
 
@@ -21,8 +21,11 @@ public class Descripcion {
 	@Field("nombre")
 	@Indexed(unique=true)
 	private String nombre;
+
+	@Field("descripcion")
+	private String descripcion;
 	
 	private Map<String,List<ListaTo>> listas;
 	
-	private Map<String,String> atributos;
+	private List<ListaTo> atributos;
 }

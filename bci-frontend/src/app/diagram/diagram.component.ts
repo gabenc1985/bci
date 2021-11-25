@@ -30,6 +30,9 @@ import bpmnPropertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/
 import magicPropertiesProviderModule from '../provider/magic';
 import { UserService } from 'app/core/user/user.service';
 import { ControlesService } from 'app/provider/controles.service';
+import { Constantes } from 'app/core/flow/flow.type';
+declare var require: any;
+var fastXmlParser = require('fast-xml-parser');
 
 @Component({
   selector: 'app-diagram',
@@ -103,6 +106,8 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
   @Output() private importDone: EventEmitter<any> = new EventEmitter();
 
   @Input() private url: string;
+
+  
 
   constructor(private http: HttpClient, private controlesService:ControlesService) { }
 
@@ -183,9 +188,37 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
 
 
   public printXml() {
+
+    const defaultOptions = {
+      attributeNamePrefix : "",
+      attrNodeName: false, //default is false
+      textNodeName : "#text",
+      ignoreAttributes : false,
+      ignoreNamespaces: true,
+      cdataTagName: false, //default is false
+      cdataPositionChar: "\\c",
+      format: true,
+      indentBy: "  ",
+      supressEmptyNode: false,
+      rootNodeName: "element"
+  };
     this.bpmnJS.saveXML({ format: true }, function (err, xml) {
       //here xml is the bpmn format 
-      console.log(xml)
+        console.log(xml)
+        if( fastXmlParser.validate(xml) === true) { //optional (it'll return an object in case it's not valid)
+          let jsonObj = fastXmlParser.parse(xml, defaultOptions);
+          console.log(jsonObj)
+          if(jsonObj[Constantes.DEFINITIONS]){
+           /*
+            let process = jsonObj[varDefinitions]
+            varProcess = 'bpmn:process';
+            console.log(process[variable])
+            let secuencia = process[variable].'bpmn:sequenceFlow';
+            */
+          }
+          
+          
+      }
     });
   }
 }

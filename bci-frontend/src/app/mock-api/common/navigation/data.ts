@@ -3,6 +3,13 @@ import { FuseNavigationItem } from '@fuse/components/navigation';
 
 export const defaultNavigation: FuseNavigationItem[] = [
     {
+        id   : 'componente',
+        title: 'Componentes',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : '/componente'
+    },
+    {
         id   : 'example',
         title: 'Example',
         type : 'basic',
@@ -18,6 +25,14 @@ export const defaultNavigation: FuseNavigationItem[] = [
     }
 ];
 export const compactNavigation: FuseNavigationItem[] = [
+    
+    {
+        id   : 'componente',
+        title: 'Componentes',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : '/componente'
+    },
     {
         id   : 'example',
         title: 'Example',
@@ -35,6 +50,13 @@ export const compactNavigation: FuseNavigationItem[] = [
 ];
 export const futuristicNavigation: FuseNavigationItem[] = [
     {
+        id   : 'componente',
+        title: 'Componentes',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : '/componente'
+    },
+    {
         id   : 'example',
         title: 'Example',
         type : 'basic',
@@ -50,6 +72,13 @@ export const futuristicNavigation: FuseNavigationItem[] = [
     }
 ];
 export const horizontalNavigation: FuseNavigationItem[] = [
+    {
+        id   : 'componente',
+        title: 'Componentes',
+        type : 'basic',
+        icon : 'heroicons_outline:collection',
+        link : '/componente'
+    },
     {
         id   : 'example',
         title: 'Example',

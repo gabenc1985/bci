@@ -1,3 +1,5 @@
+server:
+  port: 8888
 spring:
   application:
     name: gateway-service
@@ -8,11 +10,13 @@ spring:
           enabled: true
       globalcors:
         corsConfigurations:
-          '[/**]':
+          '[/*/**]':
             allowedOrigins: "*"
+            allowedHeaders: "*"
             allowedMethods:
               - GET
               - POST
+              - OPTIONS
       routes:
       - id: componente-service
         uri: lb://componente-service

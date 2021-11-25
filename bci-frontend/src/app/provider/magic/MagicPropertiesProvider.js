@@ -56,7 +56,7 @@ function getDatos() {
     var arrValues = []
     $.ajax({
       //url: "./assets/databases.json",
-      url:"http://localhost:8080/componente/all",
+      url:"http://localhost:8888/componente/all",
       method: "GET",
       success: function (result) {
         arrValues = result;

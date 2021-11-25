@@ -1,0 +1,296 @@
+<div class="sm:absolute sm:inset-0 flex flex-col flex-auto min-w-0 sm:overflow-hidden bg-card dark:bg-transparent">
+
+    <!-- Header -->
+    <div
+        class="relative flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between py-8 px-6 md:px-8 border-b">
+        <!-- Loader -->
+        <div class="absolute inset-x-0 bottom-0" *ngIf="isLoading">
+            <mat-progress-bar [mode]="'indeterminate'"></mat-progress-bar>
+        </div>
+        <!-- Title -->
+        <div class="text-4xl font-extrabold tracking-tight">Componentes</div>
+
+    </div>
+
+    <!-- Main -->
+    <div class="flex flex-auto overflow-hidden">
+
+        <!-- Products list -->
+        <div class="flex flex-col flex-auto sm:mb-18 overflow-hidden sm:overflow-y-auto">
+            <ng-container *ngIf="(componentes$ | async) as componentes">
+                <ng-container *ngIf="componentes.length > 0; else noComponentes">
+                    <div class="grid">
+                        <!-- Header -->
+                        <div
+                            class="inventory-grid z-10 sticky top-0 grid gap-4 py-4 px md:px-2 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5">
+
+                            <div [mat-sort-header]="'name'">Nombre</div>
+
+                            <div class="hidden sm:block">Ver</div>
+                        </div>
+                        <!-- Rows -->
+                        <ng-container *ngIf="(componentes$ | async) as componentes">
+                            <ng-container *ngFor="let componente of componentes; trackBy: trackByFn">
+                                <div class="inventory-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
+                                    <!-- Nombre -->
+                                    <div class=" block ">
+                                        {{componente.name}}
+                                    </div>
+                                    <!-- Details button -->
+                                    <div>
+                                        <button class="min-w-10 min-h-7 h-7 px-2 leading-6" mat-stroked-button
+                                            (click)="toggleDetails(componente.id)">
+                                            <mat-icon class="icon-size-5"
+                                                [svgIcon]="selectedComponente?.id === componente.id ? 'heroicons_solid:chevron-up' : 'heroicons_solid:chevron-down'">
+                                            </mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="grid">
+                                    <ng-container *ngIf="selectedComponente?.id === componente.id">
+                                        <ng-container
+                                            *ngTemplateOutlet="rowDetailsTemplate; context: {$implicit: componente}">
+                                        </ng-container>
+                                    </ng-container>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </ng-container>
+
+            <ng-template #rowDetailsTemplate let-componente>
+                <div class="shadow-lg overflow-hidden">
+                    <div class="flex border-b">
+                        <!-- Selected product form -->
+                        <form class="flex flex-col w-full" [formGroup]="selectedComponenteForm">
+
+                            <div class="flex flex-col sm:flex-row p-8">
+                                <div class="flex flex-auto flex-wrap">
+                                    <!-- Name, SKU & etc. -->
+                                    <div class="flex flex-col w-full lg:w-2/4 sm:pl-8">
+
+                                        <!-- Name -->
+                                        <mat-form-field class="w-full">
+                                            <mat-label>Nombre</mat-label>
+                                            <input matInput [formControlName]="'name'" readonly="true">
+                                        </mat-form-field>
+
+                                        <mat-form-field class="w-full">
+                                            <mat-label>Descripción</mat-label>
+                                            <textarea matInput [formControlName]="'description'">
+                                            </textarea>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="flex flex-col w-full lg:w-2/4 sm:pl-8">
+                                        <mat-form-field class="w-full">
+                                            <mat-label>Atributo</mat-label>
+
+                                            <input matInput [formControlName]="'atributo'">
+                                            <button class="min-w-10 min-h-7 h-7 px-2 leading-6" mat-stroked-button
+                                                (click)="addAttribute()">
+                                                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:plus-circle'">
+                                                </mat-icon>
+                                            </button>
+                                        </mat-form-field>
+
+                                        <div class="grid">
+                                            <!-- Header -->
+                                            <div
+                                                class="attribute-grid z-10 sticky top-0 grid gap-4 py-4 px md:px-2 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5">
+
+                                                <div [mat-sort-header]="'name'">Atributo</div>
+
+                                                <div class="hidden sm:block">Eliminar</div>
+                                            </div>
+                                            <ng-container *ngIf="selectedComponenteForm.get('attributes').value.length">
+                                                <ng-container
+                                                    *ngFor="let attr of selectedComponenteForm.get('attributes').value; ">
+                                                    <div
+                                                        class="attribute-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
+                                                        <!-- Nombre -->
+                                                        <div class=" block ">
+                                                            {{attr.name}}
+                                                        </div>
+                                                        <!-- Details button -->
+                                                        <div>
+                                                            <button class="min-w-10 min-h-7 h-7 px-2 leading-6"
+                                                                mat-stroked-button>
+                                                                <mat-icon class="icon-size-5"
+                                                                    (click)="deleteAttribute(attr)"
+                                                                    [svgIcon]="'heroicons_solid:trash' ">
+                                                                </mat-icon>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                </ng-container>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <!--
+                                    <div class="flex flex-col w-full lg:w-1/4 sm:pl-8">
+                                 
+
+                                     
+                                            <mat-form-field class="w-full">
+                                                <mat-label>Tipo</mat-label>
+                                                <mat-select [formControlName]="'tipo'">
+                                                    <ng-container *ngFor="let brand of brands">
+                                                        <mat-option [value]="brand.id">
+                                                            {{brand.name}}
+                                                        </mat-option>
+                                                    </ng-container>
+                                                </mat-select>
+                                            </mat-form-field>
+                                      
+                                    </div>
+  -->
+                                </div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row p-8">
+                                <div class="flex flex-auto flex-wrap">
+                                    <!-- Name, SKU & etc. -->
+                                    <div class="flex flex-col w-full lg:w-2/4 sm:pl-8">
+                                        <mat-form-field class="w-full">
+                                            <mat-label>Lista</mat-label>
+                                            <input matInput [formControlName]="'lista'">
+                                            <div>
+                                                <button class="min-w-10 min-h-7 h-7 px-2 leading-6"
+                                                    mat-stroked-button>
+                                                    <mat-icon class="icon-size-5"
+                                                        (click)="addList()"
+                                                        [svgIcon]="'heroicons_solid:plus-circle' ">
+                                                    </mat-icon>
+                                                </button>
+                                            </div>
+                                        </mat-form-field>
+                                        <div class="grid">
+                                            <!-- Header -->
+                                            <div
+                                                class="list-grid z-10 sticky top-0 grid gap-4 py-4 px md:px-2 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5">
+
+                                                <div [mat-sort-header]="'name'">Lista</div>
+                                                <div class="hidden sm:block">Detalle</div>
+                                                <div class="hidden sm:block">Eliminar</div>
+                                            </div>
+                                            <ng-container *ngIf="keysListas">
+                                        
+                                                <ng-container
+                                                    *ngFor="let lis of keysListas ">
+                                                    <div
+                                                        class="list-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
+                                                        <!-- Nombre -->
+                                                        <div class=" block ">
+                                                            {{lis}}
+                                                        </div>
+                                                        <div>
+                                                            <button class="min-w-10 min-h-7 h-7 px-2 leading-6"
+                                                                mat-stroked-button>
+                                                                <mat-icon class="icon-size-5"
+                                                                    (click)="toggleDetailsLista(lis)"
+                                                                    [svgIcon]="'heroicons_solid:menu' ">
+                                                                </mat-icon>
+                                                            </button>
+                                                        </div>
+                                                        <!-- Details button -->
+                                                        <div>
+                                                            <button class="min-w-10 min-h-7 h-7 px-2 leading-6"
+                                                                mat-stroked-button>
+                                                                <mat-icon class="icon-size-5"
+                                                                    (click)="deleteList(lis)"
+                                                                    [svgIcon]="'heroicons_solid:trash' ">
+                                                                </mat-icon>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </ng-container>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col w-full lg:w-2/4 sm:pl-8">
+                                        <mat-form-field class="w-full">
+                                            <mat-label>Atributo lista {{key}}</mat-label>
+
+                                            <input matInput [formControlName]="'atributoLista'">
+                                            <button class="min-w-10 min-h-7 h-7 px-2 leading-6" mat-stroked-button
+                                                (click)="addAttributeList()">
+                                                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:plus-circle'">
+                                                </mat-icon>
+                                            </button>
+                                        </mat-form-field>
+
+                                        <div class="grid">
+                                            <!-- Header -->
+                                            <div
+                                                class="attribute-grid z-10 sticky top-0 grid gap-4 py-4 px md:px-2 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5">
+
+                                                <div [mat-sort-header]="'name'">Atributo</div>
+
+                                                <div class="hidden sm:block">Eliminar</div>
+                                            </div>
+                                            <ng-container *ngIf="listaAtributo && listaAtributo.length>0">
+                                                <ng-container
+                                                    *ngFor="let attr of listaAtributo; ">
+                                                    <div
+                                                        class="attribute-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
+                                                        <!-- Nombre -->
+                                                        <div class=" block ">
+                                                            {{attr.name}}
+                                                        </div>
+                                                        <!-- Details button -->
+                                                        <div>
+                                                            <button class="min-w-10 min-h-7 h-7 px-2 leading-6"
+                                                                mat-stroked-button>
+                                                                <mat-icon class="icon-size-5"
+                                                                    (click)="deleteAttributeList(attr)"
+                                                                    [svgIcon]="'heroicons_solid:trash' ">
+                                                                </mat-icon>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                </ng-container>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between w-full border-t px-8 py-4">
+
+                                <div class="flex items-center">
+                                    <div class="flex items-center mr-4" *ngIf="flashMessage">
+                                        <ng-container *ngIf="flashMessage.type === 'success'">
+                                            <mat-icon class="text-green-500" [svgIcon]="'heroicons_outline:check'">
+                                            </mat-icon>
+                                            <span class="ml-2">{{flashMessage.text}}</span>
+                                        </ng-container>
+                                        <ng-container *ngIf="flashMessage.type === 'error'">
+                                            <mat-icon class="text-red-500" [svgIcon]="'heroicons_outline:x'">
+                                            </mat-icon>
+                                            <span class="ml-2">{{flashMessage.text}}</span>
+                                        </ng-container>
+                                    </div>
+                                    <button mat-flat-button [color]="'primary'" (click)='updateSelectedComponente()'>
+                                        Actualizar
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </ng-template>
+
+            <ng-template #noComponentes>
+                <div class="p-8 sm:p-16 border-t text-4xl font-semibold tracking-tight text-center">No existen
+                    componentes!</div>
+            </ng-template>
+
+        </div>
+
+    </div>
+
+</div>

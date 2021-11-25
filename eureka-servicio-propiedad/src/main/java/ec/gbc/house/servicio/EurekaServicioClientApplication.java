@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -20,7 +23,7 @@ public class EurekaServicioClientApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EurekaServicioClientApplication.class, args);
 	}
-	
+
 	@Bean
     public Docket swaggerApi() {
         return new Docket(DocumentationType.SWAGGER_2)

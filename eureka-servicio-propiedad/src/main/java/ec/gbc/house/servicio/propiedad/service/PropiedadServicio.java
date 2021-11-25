@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import ec.gbc.house.servicio.to.CatalogoTo;
+import ec.gbc.house.servicio.propiedad.to.CatalogoTo;
 import ec.gbc.house.servicio.propiedad.model.Descripcion;
 
 @Service
@@ -33,10 +33,6 @@ public class PropiedadServicio {
     }
 
     public String guardarActualizarCatalogo(CatalogoTo catalogoTo) {
-        Descripcion descripcion = descripcionRepository.findDescripcionByNombre(catalogoTo.getNombre());
-        if (descripcion != null) {
-			descripcionRepository.delete(descripcion);
-        }
         Descripcion save = descripcionRepository.save(descripcionFromCatalogoTo(catalogoTo));
         return save.getId();
     }
@@ -48,6 +44,7 @@ public class PropiedadServicio {
         descripcion.setAtributos(catalogo.getAtributos());
         descripcion.setNombre(catalogo.getNombre());
         descripcion.setListas(catalogo.getListas());
+        descripcion.setDescripcion(catalogo.getDescription());
         return descripcion;
     }
 
@@ -57,6 +54,7 @@ public class PropiedadServicio {
         }
         CatalogoTo catalogo = new CatalogoTo();
         catalogo.setNombre(descripcion.getNombre());
+        catalogo.setDescription(descripcion.getDescripcion());
         catalogo.setId(descripcion.getId());
         catalogo.setListas(descripcion.getListas());
         catalogo.setAtributos(descripcion.getAtributos());
@@ -83,5 +81,13 @@ public class PropiedadServicio {
             return catalogoToFromDescripcion(descripcion);
         }
         return null;
+    }
+
+    public String eliminarCatalogoPorId(String id) {
+        Optional<Descripcion> descripcionOptional = this.descripcionRepository.findById(id);
+        if (descripcionOptional.isPresent()) {
+            this.descripcionRepository.delete(descripcionOptional.get());
+        }
+        return id;
     }
 }
