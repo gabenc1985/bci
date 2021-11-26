@@ -100,7 +100,7 @@
                                             <div
                                                 class="attribute-grid z-10 sticky top-0 grid gap-4 py-4 px md:px-2 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5">
 
-                                                <div [mat-sort-header]="'name'">Atributo</div>
+                                                <div [mat-sort-header]="'name'">Propiedad</div>
 
                                                 <div class="hidden sm:block">Eliminar</div>
                                             </div>
@@ -209,9 +209,17 @@
                                             </ng-container>
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="flex flex-col w-full lg:w-2/4 sm:pl-8">
-                                        <mat-form-field class="w-full">
-                                            <mat-label>Atributo lista {{key}}</mat-label>
+                                        <div class="flex">
+                                        <mat-form-field class="w-1/2 pr-2">
+                                            <mat-label>{{key}} (Label)</mat-label>
+
+                                            <input matInput [formControlName]="'labelLista'">
+                                           
+                                        </mat-form-field>
+                                        <mat-form-field class="w-1/2 pr-2">
+                                            <mat-label>(Valor)</mat-label>
 
                                             <input matInput [formControlName]="'atributoLista'">
                                             <button class="min-w-10 min-h-7 h-7 px-2 leading-6" mat-stroked-button
@@ -220,13 +228,14 @@
                                                 </mat-icon>
                                             </button>
                                         </mat-form-field>
-
+                                        </div>
                                         <div class="grid">
                                             <!-- Header -->
                                             <div
-                                                class="attribute-grid z-10 sticky top-0 grid gap-4 py-4 px md:px-2 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5">
+                                                class="attribute-list-grid z-10 sticky top-0 grid gap-4 py-4 px md:px-2 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5">
 
-                                                <div [mat-sort-header]="'name'">Atributo</div>
+                                                <div [mat-sort-header]="'name'">Label</div>
+                                                <div [mat-sort-header]="'name'">Valor</div>
 
                                                 <div class="hidden sm:block">Eliminar</div>
                                             </div>
@@ -234,10 +243,13 @@
                                                 <ng-container
                                                     *ngFor="let attr of listaAtributo; ">
                                                     <div
-                                                        class="attribute-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
-                                                        <!-- Nombre -->
+                                                        class="attribute-list-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
                                                         <div class=" block ">
                                                             {{attr.name}}
+                                                        </div>
+                                                        <!-- Nombre -->
+                                                        <div class=" block ">
+                                                            {{attr.value}}
                                                         </div>
                                                         <!-- Details button -->
                                                         <div>

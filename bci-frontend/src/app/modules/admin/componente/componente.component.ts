@@ -27,6 +27,9 @@ import { ComponenteService } from './componente.service';
             .list-grid {
                 grid-template-columns: 60% 20% 20%;
             }
+            .attribute-list-grid {
+                grid-template-columns: 40% 40% 20%;
+            }
         `
     ],
     encapsulation: ViewEncapsulation.None,
@@ -78,6 +81,7 @@ export class ComponenteComponent {
             attributes: [[]],
             atributo: [''],
             atributoLista: [''],
+            labelLista: [''],
             lista: ['']
 
         });
@@ -125,6 +129,7 @@ export class ComponenteComponent {
             attributes: [[]],
             atributo: [''],
             atributoLista: [''],
+            labelLista: [''],
             lista: ['']
 
         });
@@ -160,7 +165,7 @@ export class ComponenteComponent {
         this._componentenService.updateComponente(componente.id, componente).subscribe(() => {
 
             // Show a success message
-            this.showFlashMessage('Se actualizo el componente','success');
+            this.showFlashMessage('Se actualizo el componente', 'success');
         });
     }
 
@@ -192,11 +197,14 @@ export class ComponenteComponent {
         this.selectedComponenteForm.get('list').setValue(aux)
         this.showFlashMessage('Atributo eliminado', 'success');
         console.log(this.selectedComponenteForm)
-
+        this.listaAtributo = aux[this.key];
+        this._changeDetectorRef.markForCheck();
 
     }
 
     addAttributeList() {
+        console.log(this.selectedComponenteForm.get('atributoLista').value)
+        console.log(this.selectedComponenteForm.get('labelLista').value)
 
         let repetidos = this.listaAtributo.filter(item =>
             item.name == this.selectedComponenteForm.get('atributoLista').value
@@ -210,25 +218,31 @@ export class ComponenteComponent {
             this.showFlashMessage('Debe seleccionar una lista, para ingresar un atributo', 'error')
             return;
         }
+        console.log(this.selectedComponenteForm.get('atributoLista').value)
+        console.log(this.selectedComponenteForm.get('labelLista').value)
         if (this.selectedComponenteForm.get('atributoLista').value) {
-            let atributo: Attribute = {
-                name: this.selectedComponenteForm.get('atributoLista').value,
-                value: null,
-                type: 'string'
-            }
+            if (this.selectedComponenteForm.get('labelLista').value) {
+                let atributo: Attribute = {
+                    name: this.selectedComponenteForm.get('labelLista').value,
+                    value: this.selectedComponenteForm.get('atributoLista').value,
+                    type: 'string'
+                }
 
-            if (this.listaAtributo.length == 0) {
-                console.log(this.listaAtributo)
-                this.listaAtributo = [];
+                if (this.listaAtributo.length == 0) {
+                    this.listaAtributo = [];
+                }
+                this.listaAtributo.push(atributo);
+                let aux: any = this.selectedComponenteForm.get('list').value;
+                aux[this.key] = this.listaAtributo;
+                this.selectedComponenteForm.get('list').setValue(aux)
+                this.showFlashMessage('Atributo agregado', 'success');
             }
-            this.listaAtributo.push(atributo);
-            let aux: any = this.selectedComponenteForm.get('list').value;
-            aux[this.key] = this.listaAtributo;
-            this.selectedComponenteForm.get('list').setValue(aux)
-            this.showFlashMessage('Atributo agregado', 'success');
+            else {
+                this.showFlashMessage('Ingrese un () y (Valor) antes de ingresar a la lista', 'error')
+            }
         }
         else {
-            this.showFlashMessage('Ingrese un atributo para la lista', 'error')
+            this.showFlashMessage('Ingrese un (Label) y (Valor) antes de ingresar a la lista', 'error')
         }
         this._changeDetectorRef.markForCheck();
     }
@@ -248,7 +262,6 @@ export class ComponenteComponent {
 
     toggleDetailsLista(listaKey: string) {
         let aux: any[] = this.selectedComponenteForm.get('list').value;
-        console.log(aux)
         this.listaAtributo = aux[listaKey];
         this.key = listaKey;
     }

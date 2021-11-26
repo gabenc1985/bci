@@ -11,6 +11,8 @@ export class Constantes {
     public static DEFINITIONS = "bpmn:definitions";
     public static PROCESS = "bpmn:process";
     public static SEQUENCE = "bpmn:sequenceFlow";
+    public static INCOMING = "bpmn:incoming";
+    public static OUTGOING = "bpmn:outgoing";
     
 }
 

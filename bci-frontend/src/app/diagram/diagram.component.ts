@@ -28,7 +28,6 @@ import { from, Observable, Subscription } from 'rxjs';
 import propertiesPanelModule from 'bpmn-js-properties-panel';
 import bpmnPropertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/bpmn';
 import magicPropertiesProviderModule from '../provider/magic';
-import { UserService } from 'app/core/user/user.service';
 import { ControlesService } from 'app/provider/controles.service';
 import { Constantes } from 'app/core/flow/flow.type';
 declare var require: any;
@@ -107,9 +106,9 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
 
   @Input() private url: string;
 
-  
 
-  constructor(private http: HttpClient, private controlesService:ControlesService) { }
+
+  constructor(private http: HttpClient, private controlesService: ControlesService) { }
 
   ngOnInit() {
 
@@ -117,11 +116,11 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
       propertiesPanel: {
         parent: this.propertiesRef.nativeElement,
       },
-      
+
       additionalModules: [
         propertiesPanelModule,
         bpmnPropertiesProviderModule,
-       magicPropertiesProviderModule
+        magicPropertiesProviderModule
       ]
 
     });
@@ -190,10 +189,10 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
   public printXml() {
 
     const defaultOptions = {
-      attributeNamePrefix : "",
+      attributeNamePrefix: "",
       attrNodeName: false, //default is false
-      textNodeName : "#text",
-      ignoreAttributes : false,
+      textNodeName: "#text",
+      ignoreAttributes: false,
       ignoreNamespaces: true,
       cdataTagName: false, //default is false
       cdataPositionChar: "\\c",
@@ -201,24 +200,104 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
       indentBy: "  ",
       supressEmptyNode: false,
       rootNodeName: "element"
-  };
+    };
     this.bpmnJS.saveXML({ format: true }, function (err, xml) {
       //here xml is the bpmn format 
-        console.log(xml)
-        if( fastXmlParser.validate(xml) === true) { //optional (it'll return an object in case it's not valid)
-          let jsonObj = fastXmlParser.parse(xml, defaultOptions);
-          console.log(jsonObj)
-          if(jsonObj[Constantes.DEFINITIONS]){
-           /*
-            let process = jsonObj[varDefinitions]
-            varProcess = 'bpmn:process';
-            console.log(process[variable])
-            let secuencia = process[variable].'bpmn:sequenceFlow';
-            */
-          }
-          
-          
+
+      if (fastXmlParser.validate(xml) === true) { //optional (it'll return an object in case it's not valid)
+        let jsonObj = fastXmlParser.parse(xml, defaultOptions);
+        if (jsonObj[Constantes.DEFINITIONS]) {
+          let definiciones = jsonObj[Constantes.DEFINITIONS]
+          let proceso = definiciones[Constantes.PROCESS]
+          let secuencia = proceso[Constantes.SEQUENCE]
+
+          let componentes = Object.keys(proceso);
+
+
+          /*
+           let process = jsonObj[varDefinitions]
+           varProcess = 'bpmn:process';
+           console.log(process[variable])
+           let secuencia = process[variable].'bpmn:sequenceFlow';
+           */
+          let startComponentes = secuencia.filter(item => {
+
+            return ("" + item.sourceRef).startsWith("StartEvent_")
+          })
+          console.log(secuencia)
+
+          let recursivo = startComponentes.map(element => {
+            return getSecuencia(element, secuencia, []);
+            /*return secuencia.filter(item=>{
+              console.log(element.targetRef == item.sourceRef)
+              
+              return element.targetRef == item.sourceRef;
+           });
+           */
+          })
+          console.log(proceso)
+          console.log(recursivo)
+
+          let componentesFinal = recursivo[0].map(t => {
+            let componente = Object.keys(proceso)
+              .filter(k => {
+
+                return k != 'bpmn:sequenceFlow'
+                  && k !== 'bpmn:startEvent'
+                  && k !== 'bpmn:endEvent'
+                  && (proceso[k] instanceof Object || proceso[k] instanceof Array)
+              })
+              .map(k => {
+                console.log("key: " + k + " values: " + proceso[k])
+                if (proceso[k] instanceof Array) {
+                  console.log('gabriel');
+                  return proceso[k]
+                    .flatMap(t => {
+                      let nProceso: any = t;
+                      nProceso.name = k
+                      delete nProceso[Constantes.INCOMING]
+                      delete nProceso[Constantes.OUTGOING]
+                      return nProceso;
+                    })
+                } else {
+                  let nProceso: any = proceso[k];
+                  nProceso.name = k
+                  delete nProceso[Constantes.INCOMING]
+                  delete nProceso[Constantes.OUTGOING]
+                  return nProceso;
+                }
+              })
+              .flatMap(f=>f)
+              .filter(p => {
+                console.log(p)
+                return t.sourceRef == p.id
+              });
+            console.log(componente);
+            if (!t.targetRef.startsWith("Event_")) {
+              componente[0].next = t.targetRef;
+
+            }
+            return componente[0];
+          })
+          console.log(componentesFinal)
+        }
       }
     });
   }
+
+
 }
+
+function getSecuencia(origen: any, vectorComponente: any, vectorOrdenado: undefined[]) {
+  let componenteNuevo = vectorComponente.filter(item => {
+    return origen.targetRef == item.sourceRef;
+  });
+  //vectorOrdenado.push(componenteNuevo)
+  componenteNuevo.map(vo => {
+    vectorOrdenado.push(vo);
+    getSecuencia(vo, vectorComponente, vectorOrdenado);
+  })
+  return vectorOrdenado;
+
+}
+

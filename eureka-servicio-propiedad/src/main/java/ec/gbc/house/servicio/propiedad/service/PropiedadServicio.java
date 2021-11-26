@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import ec.gbc.house.servicio.propiedad.repository.DescripcionRepository;
+import ec.gbc.house.servicio.propiedad.to.ListaTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
@@ -27,7 +28,7 @@ public class PropiedadServicio {
         List<Descripcion> descripciones = descripcionRepository.findAll();
         List<CatalogoTo> catalogos = new ArrayList<CatalogoTo>();
         descripciones.forEach(item -> {
-            catalogos.add(catalogoToFromDescripcion(item));
+            catalogos.add(catalogoToFromDescripcion(item, false));
         });
         return catalogos;
     }
@@ -48,7 +49,7 @@ public class PropiedadServicio {
         return descripcion;
     }
 
-    private CatalogoTo catalogoToFromDescripcion(Descripcion descripcion) {
+    private CatalogoTo catalogoToFromDescripcion(Descripcion descripcion, Boolean isAll) {
         if(descripcion == null){
             return null;
         }
@@ -56,6 +57,14 @@ public class PropiedadServicio {
         catalogo.setNombre(descripcion.getNombre());
         catalogo.setDescription(descripcion.getDescripcion());
         catalogo.setId(descripcion.getId());
+        if(descripcion.getListas()!=null && isAll){
+            descripcion.getListas().forEach((key,value)->{
+                ListaTo listaTo= new ListaTo();
+                listaTo.setNombre("Seleccione ..");
+                listaTo.setValor("");
+                value.add(0, listaTo);
+            });
+        }
         catalogo.setListas(descripcion.getListas());
         catalogo.setAtributos(descripcion.getAtributos());
         return catalogo;
@@ -63,7 +72,7 @@ public class PropiedadServicio {
 
     public CatalogoTo buscarCatalogoPorId(String id) {
         Optional<Descripcion> descripcionOptional = this.descripcionRepository.findById(id);
-        return catalogoToFromDescripcion(descripcionOptional.orElse(null));
+        return catalogoToFromDescripcion(descripcionOptional.orElse(null), false);
     }
 
     public List<CatalogoTo> obtenerListadoComponentes() {
@@ -71,14 +80,14 @@ public class PropiedadServicio {
         query.fields().include("id", "nombre");
         List<Descripcion> descripciones = mongoTemplate.find(query, Descripcion.class);// null;//descripcionRepository.findDescripcionsWithCertainFields();
         return descripciones.stream()
-                .map(desc -> catalogoToFromDescripcion(desc))
+                .map(desc -> catalogoToFromDescripcion(desc, false))
                 .collect(Collectors.toList());
     }
 
     public CatalogoTo buscarCatalogoPorName(String name) {
         Descripcion descripcion = descripcionRepository.findDescripcionByNombre(name);
         if (descripcion != null) {
-            return catalogoToFromDescripcion(descripcion);
+            return catalogoToFromDescripcion(descripcion,false);
         }
         return null;
     }
