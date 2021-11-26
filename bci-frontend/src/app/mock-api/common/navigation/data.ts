@@ -11,17 +11,10 @@ export const defaultNavigation: FuseNavigationItem[] = [
     },
     {
         id   : 'example',
-        title: 'Example',
+        title: 'Diagrama BCI',
         type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
+        icon : 'heroicons_solid:view-grid-add',
         link : '/example'
-    },
-    {
-        id   : 'diagram',
-        title: 'Diagram',
-        type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
-        link : '/diagram'
     }
 ];
 export const compactNavigation: FuseNavigationItem[] = [
@@ -35,17 +28,10 @@ export const compactNavigation: FuseNavigationItem[] = [
     },
     {
         id   : 'example',
-        title: 'Example',
+        title: 'Diagrama BCI',
         type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
+        icon : 'heroicons_solid:view-grid-add',
         link : '/example'
-    },
-    {
-        id   : 'diagram',
-        title: 'Diagram',
-        type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
-        link : '/diagram'
     }
 ];
 export const futuristicNavigation: FuseNavigationItem[] = [
@@ -58,17 +44,10 @@ export const futuristicNavigation: FuseNavigationItem[] = [
     },
     {
         id   : 'example',
-        title: 'Example',
+        title: 'Diagrama BCI',
         type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
+        icon : 'heroicons_solid:view-grid-add',
         link : '/example'
-    },
-    {
-        id   : 'diagram',
-        title: 'Diagram',
-        type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
-        link : '/diagram'
     }
 ];
 export const horizontalNavigation: FuseNavigationItem[] = [
@@ -81,16 +60,9 @@ export const horizontalNavigation: FuseNavigationItem[] = [
     },
     {
         id   : 'example',
-        title: 'Example',
+        title: 'Diagrama BCI',
         type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
+        icon : 'heroicons_solid:view-grid-add',
         link : '/example'
-    },
-    {
-        id   : 'diagram',
-        title: 'Diagram',
-        type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
-        link : '/diagram'
     }
 ];

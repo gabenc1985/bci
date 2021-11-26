@@ -41,17 +41,17 @@ var fastXmlParser = require('fast-xml-parser');
       <div class=" flex flex-col sm:flex-row flex-auto sm:items-center min-w-0 my-8 sm:my-12 justify-between w-full">
      
         <div>
-          <div class="text-3xl font-semibold tracking-tight leading-8">Diagram Design</div>
-          <div class="font-medium tracking-tight text-secondary">Desgin your diagram to analize</div>
+          <div class="text-3xl font-semibold tracking-tight leading-8">Diseño de diagrama</div>
+          <div class="font-medium tracking-tight text-secondary">Diseño su diagrama para analizar</div>
         </div>
         <div class="flex items-center ml-6 space-x-3" >
           <button class="hidden sm:inline-flex" mat-stroked-button>
-            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:cog'"></mat-icon>
-            <span class="ml-2">Settings</span>
+            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:save'"></mat-icon>
+            <span class="ml-2">Guardar</span>
           </button>
           <button class="hidden sm:inline-flex ml-3" mat-flat-button [color]="'primary'" (click)="printXml()">
-            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:save'"></mat-icon>
-            <span class="ml-2">Export</span>
+            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:cog'"></mat-icon>
+            <span class="ml-2">Analizar</span>
           </button>
 
           <!-- Actions menu (visible on xs) -->
@@ -60,8 +60,8 @@ var fastXmlParser = require('fast-xml-parser');
               <mat-icon [svgIcon]="'heroicons_outline:dots-vertical'"></mat-icon>
             </button>
             <mat-menu #actionsMenu="matMenu">
-              <button mat-menu-item>Export</button>
-              <button mat-menu-item>Settings</button>
+              <button mat-menu-item>Analizar</button>
+              <button mat-menu-item>Guardar</button>
             </mat-menu>
           </div>
         </div>
@@ -210,45 +210,22 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
           let definiciones = jsonObj[Constantes.DEFINITIONS]
           let proceso = definiciones[Constantes.PROCESS]
           let secuencia = proceso[Constantes.SEQUENCE]
-
-          let componentes = Object.keys(proceso);
-
-
-          /*
-           let process = jsonObj[varDefinitions]
-           varProcess = 'bpmn:process';
-           console.log(process[variable])
-           let secuencia = process[variable].'bpmn:sequenceFlow';
-           */
           let startComponentes = secuencia.filter(item => {
-
             return ("" + item.sourceRef).startsWith("StartEvent_")
           })
-          console.log(secuencia)
-
           let recursivo = startComponentes.map(element => {
             return getSecuencia(element, secuencia, []);
-            /*return secuencia.filter(item=>{
-              console.log(element.targetRef == item.sourceRef)
-              
-              return element.targetRef == item.sourceRef;
-           });
-           */
           })
-          console.log(proceso)
-          console.log(recursivo)
 
           let componentesFinal = recursivo[0].map(t => {
             let componente = Object.keys(proceso)
               .filter(k => {
-
                 return k != 'bpmn:sequenceFlow'
                   && k !== 'bpmn:startEvent'
                   && k !== 'bpmn:endEvent'
                   && (proceso[k] instanceof Object || proceso[k] instanceof Array)
               })
               .map(k => {
-                console.log("key: " + k + " values: " + proceso[k])
                 if (proceso[k] instanceof Array) {
                   console.log('gabriel');
                   return proceso[k]
@@ -267,18 +244,20 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
                   return nProceso;
                 }
               })
-              .flatMap(f=>f)
+              .flatMap(f => f)
               .filter(p => {
-                console.log(p)
                 return t.sourceRef == p.id
               });
-            console.log(componente);
             if (!t.targetRef.startsWith("Event_")) {
               componente[0].next = t.targetRef;
 
             }
             return componente[0];
           })
+          var index = 1;
+          componentesFinal.forEach(element => {
+            element.order = index++
+          });
           console.log(componentesFinal)
         }
       }
