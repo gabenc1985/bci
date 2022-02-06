@@ -1,7 +1,7 @@
 package ec.gbc.house.servicio.controller;
 
 import ec.gbc.house.servicio.propiedad.service.PropiedadServicio;
-import ec.gbc.house.servicio.propiedad.to.CatalogoTo;
+import ec.gbc.house.servicio.propiedad.to.Componente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
@@ -17,19 +17,19 @@ public class PropiedadController {
 	private PropiedadServicio servicio;
 
 	@GetMapping("/all")
-	public List<CatalogoTo> all() {
+	public List<Componente> all() {
 		return servicio.obtenerTodosLosCatalogos();
 	}
 
 	@PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON,
 			produces = MediaType.APPLICATION_JSON)
-	public String save(@RequestBody CatalogoTo catalogoTo){
+	public String save(@RequestBody Componente catalogoTo){
 		return servicio.guardarActualizarCatalogo(catalogoTo);
 	}
 
 	@GetMapping(value = "/find/{id}",
 			produces = MediaType.APPLICATION_JSON)
-	public CatalogoTo save(@PathVariable("id") String id){
+	public Componente save(@PathVariable("id") String id){
 		return servicio.buscarCatalogoPorId(id);
 	}
 
@@ -42,13 +42,19 @@ public class PropiedadController {
 
 	@GetMapping(value = "/components",
 			produces = MediaType.APPLICATION_JSON)
-	public List<CatalogoTo> getList(){
+	public List<Componente> getList(){
 		return servicio.obtenerListadoComponentes();
 	}
 
 	@GetMapping(value = "/findName/{name}",
 			produces = MediaType.APPLICATION_JSON)
-	public CatalogoTo findByName(@PathVariable("name") String name){
+	public Componente findByName(@PathVariable("name") String name){
 		return servicio.buscarCatalogoPorName(name);
+	}
+
+	@GetMapping(value = "/findByType/{type}",
+			produces = MediaType.APPLICATION_JSON)
+	public List<Componente> findByType(@PathVariable("type") String type){
+		return servicio.buscarCatalogoPorTipo(type);
 	}
 }

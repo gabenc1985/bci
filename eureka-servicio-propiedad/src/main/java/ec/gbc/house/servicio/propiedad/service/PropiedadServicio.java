@@ -5,95 +5,113 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import ec.gbc.house.servicio.propiedad.repository.DescripcionRepository;
-import ec.gbc.house.servicio.propiedad.to.ListaTo;
+import ec.gbc.house.servicio.propiedad.repository.ComponentRepository;
+import ec.gbc.house.servicio.propiedad.to.Atributo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import ec.gbc.house.servicio.propiedad.to.CatalogoTo;
-import ec.gbc.house.servicio.propiedad.model.Descripcion;
+import ec.gbc.house.servicio.propiedad.to.Componente;
 
 @Service
 public class PropiedadServicio {
 
     @Autowired
-    DescripcionRepository descripcionRepository;
+    ComponentRepository descripcionRepository;
 
     @Autowired
     MongoTemplate mongoTemplate;
 
-    public List<CatalogoTo> obtenerTodosLosCatalogos() {
-        List<Descripcion> descripciones = descripcionRepository.findAll();
-        List<CatalogoTo> catalogos = new ArrayList<CatalogoTo>();
+    public List<Componente> obtenerTodosLosCatalogos() {
+        List<ec.gbc.house.servicio.propiedad.model.Componente> descripciones = descripcionRepository.findAll();
+        List<Componente> catalogos = new ArrayList<Componente>();
         descripciones.forEach(item -> {
-            catalogos.add(catalogoToFromDescripcion(item, false));
+            catalogos.add(catalogoToFromComponente(item, false));
         });
         return catalogos;
     }
 
-    public String guardarActualizarCatalogo(CatalogoTo catalogoTo) {
-        Descripcion save = descripcionRepository.save(descripcionFromCatalogoTo(catalogoTo));
+    public String guardarActualizarCatalogo(Componente catalogoTo) {
+        ec.gbc.house.servicio.propiedad.model.Componente save = descripcionRepository.save(descripcionFromCatalogoTo(catalogoTo));
         return save.getId();
     }
 
 
-    private Descripcion descripcionFromCatalogoTo(CatalogoTo catalogo) {
-        Descripcion descripcion = new Descripcion();
-        descripcion.setId(catalogo.getId());
-        descripcion.setAtributos(catalogo.getAtributos());
-        descripcion.setNombre(catalogo.getNombre());
-        descripcion.setListas(catalogo.getListas());
-        descripcion.setDescripcion(catalogo.getDescription());
-        return descripcion;
+    private ec.gbc.house.servicio.propiedad.model.Componente descripcionFromCatalogoTo(Componente catalogo) {
+        ec.gbc.house.servicio.propiedad.model.Componente component = new ec.gbc.house.servicio.propiedad.model.Componente();
+        component.setId(catalogo.getId());
+        component.setAttributes(catalogo.getAtributos());
+        component.setName(catalogo.getNombre());
+        component.setLists(catalogo.getListas());
+        component.setDescription(catalogo.getDescription());
+        component.setAlias(catalogo.getAlias());
+        component.setCode(catalogo.getCode());
+        component.setType(catalogo.getType());
+        component.setOrder(catalogo.getOrder());
+        return component;
     }
 
-    private CatalogoTo catalogoToFromDescripcion(Descripcion descripcion, Boolean isAll) {
+    private Componente catalogoToFromComponente(ec.gbc.house.servicio.propiedad.model.Componente descripcion, Boolean isAll) {
         if(descripcion == null){
             return null;
         }
-        CatalogoTo catalogo = new CatalogoTo();
-        catalogo.setNombre(descripcion.getNombre());
-        catalogo.setDescription(descripcion.getDescripcion());
+        Componente catalogo = new Componente();
+        catalogo.setNombre(descripcion.getName());
+        catalogo.setAlias(descripcion.getAlias());
+        catalogo.setOrder(descripcion.getOrder());
+        catalogo.setAlias(descripcion.getAlias());
+        catalogo.setType(descripcion.getType());
+        catalogo.setCode(descripcion.getCode());
+        catalogo.setDescription(descripcion.getDescription());
         catalogo.setId(descripcion.getId());
-        if(descripcion.getListas()!=null && isAll){
-            descripcion.getListas().forEach((key,value)->{
-                ListaTo listaTo= new ListaTo();
-                listaTo.setNombre("Seleccione ..");
-                listaTo.setValor("");
-                value.add(0, listaTo);
+        if(descripcion.getLists()!=null && isAll){
+            descripcion.getLists().forEach((key,value)->{
+                Atributo atributo = new Atributo();
+                atributo.setNombre("Seleccione ..");
+                atributo.setValor("");
+                value.getAtributos().add(0, atributo);
             });
         }
-        catalogo.setListas(descripcion.getListas());
-        catalogo.setAtributos(descripcion.getAtributos());
+        catalogo.setListas(descripcion.getLists());
+        catalogo.setAtributos(descripcion.getAttributes());
         return catalogo;
     }
 
-    public CatalogoTo buscarCatalogoPorId(String id) {
-        Optional<Descripcion> descripcionOptional = this.descripcionRepository.findById(id);
-        return catalogoToFromDescripcion(descripcionOptional.orElse(null), false);
+    public Componente buscarCatalogoPorId(String id) {
+        Optional<ec.gbc.house.servicio.propiedad.model.Componente> descripcionOptional = this.descripcionRepository.findById(id);
+        return catalogoToFromComponente(descripcionOptional.orElse(null), false);
     }
 
-    public List<CatalogoTo> obtenerListadoComponentes() {
+    public List<Componente> obtenerListadoComponentes() {
         Query query = new Query();
-        query.fields().include("id", "nombre");
-        List<Descripcion> descripciones = mongoTemplate.find(query, Descripcion.class);// null;//descripcionRepository.findDescripcionsWithCertainFields();
+        query.fields().include("id", "name");
+        List<ec.gbc.house.servicio.propiedad.model.Componente> descripciones = mongoTemplate.find(query, ec.gbc.house.servicio.propiedad.model.Componente.class);// null;//descripcionRepository.findDescripcionsWithCertainFields();
         return descripciones.stream()
-                .map(desc -> catalogoToFromDescripcion(desc, false))
+                .map(desc -> catalogoToFromComponente(desc, false))
                 .collect(Collectors.toList());
     }
 
-    public CatalogoTo buscarCatalogoPorName(String name) {
-        Descripcion descripcion = descripcionRepository.findDescripcionByNombre(name);
+    public Componente buscarCatalogoPorName(String name) {
+        ec.gbc.house.servicio.propiedad.model.Componente descripcion = descripcionRepository.findDescripcionByNombre(name);
         if (descripcion != null) {
-            return catalogoToFromDescripcion(descripcion,false);
+            return catalogoToFromComponente(descripcion,false);
+        }
+        return null;
+    }
+
+    public List<Componente> buscarCatalogoPorTipo(String tipo) {
+        List<ec.gbc.house.servicio.propiedad.model.Componente> componentes = descripcionRepository.findDescripcionByTipo(tipo);
+        if (!componentes.isEmpty()) {
+            return  componentes.stream()
+                    .map(componente -> catalogoToFromComponente(componente,false))
+                    .collect(Collectors.toList());
         }
         return null;
     }
 
     public String eliminarCatalogoPorId(String id) {
-        Optional<Descripcion> descripcionOptional = this.descripcionRepository.findById(id);
+        Optional<ec.gbc.house.servicio.propiedad.model.Componente> descripcionOptional = this.descripcionRepository.findById(id);
         if (descripcionOptional.isPresent()) {
             this.descripcionRepository.delete(descripcionOptional.get());
         }

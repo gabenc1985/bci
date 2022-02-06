@@ -21,23 +21,34 @@
                 <ng-container *ngIf="componentes.length > 0; else noComponentes">
                     <div class="grid">
                         <!-- Header -->
-                        <div
-                            class="inventory-grid z-10 sticky top-0 grid gap-4 py-4 px md:px-2 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5">
+                        <div class="inventory-grid z-10 sticky top-0 grid gap-4 py-4 px-6 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5"
+                            matSort>
 
-                            <div [mat-sort-header]="'name'">Nombre</div>
-
+                            <div class="hidden sm:block" [mat-sort-header]="'name'">Código</div>
+                            <div class="hidden md:block" [mat-sort-header]="'alias'">Alias</div>
+                            <div class="hidden md:block" [mat-sort-header]="'type'">Tipo</div>
+                            <div class="hidden lg:block" [mat-sort-header]="'description'">Descripción</div>
                             <div class="hidden sm:block">Ver</div>
                         </div>
                         <!-- Rows -->
                         <ng-container *ngIf="(componentes$ | async) as componentes">
                             <ng-container *ngFor="let componente of componentes; trackBy: trackByFn">
-                                <div class="inventory-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
+                                <div class="inventory-grid grid grid gap-4 py-3 px-6 md:px-8 border-b">
                                     <!-- Nombre -->
-                                    <div class=" block ">
+                                    <div class=" hidden sm:block truncate ">
                                         {{componente.name}}
                                     </div>
+                                    <div class=" hidden md:block truncate ">
+                                        {{componente.alias}}
+                                    </div>
+                                    <div class=" hidden md:block truncate ">
+                                        {{componente.type}}
+                                    </div>
+                                    <div class=" hidden lg:block truncate ">
+                                        {{componente.description}}
+                                    </div>
                                     <!-- Details button -->
-                                    <div>
+                                    <div class=" hidden sm:block truncate ">
                                         <button class="min-w-10 min-h-7 h-7 px-2 leading-6" mat-stroked-button
                                             (click)="toggleDetails(componente.id)">
                                             <mat-icon class="icon-size-5"
@@ -68,39 +79,47 @@
                             <div class="flex flex-col sm:flex-row p-8">
                                 <div class="flex flex-auto flex-wrap">
                                     <!-- Name, SKU & etc. -->
-                                    <div class="flex flex-col w-full lg:w-2/4 sm:pl-8">
+                                    <div class="flex flex-col w-full lg:w-4/4 sm:pl-8">
 
                                         <!-- Name -->
-                                        <mat-form-field class="w-full">
-                                            <mat-label>Nombre</mat-label>
+                                        <mat-form-field class="w-1/2">
+                                            <mat-label>Code</mat-label>
                                             <input matInput [formControlName]="'name'" readonly="true">
                                         </mat-form-field>
 
-                                        <mat-form-field class="w-full">
+                                        <mat-form-field class="w-1/2">
                                             <mat-label>Descripción</mat-label>
                                             <textarea matInput [formControlName]="'description'">
                                             </textarea>
                                         </mat-form-field>
                                     </div>
-
+                                 
                                     <div class="flex flex-col w-full lg:w-2/4 sm:pl-8">
-                                        <mat-form-field class="w-full">
+                                        <div class="flex">
+                                        <mat-form-field class="w-1/2 pr-4">
                                             <mat-label>Atributo</mat-label>
 
                                             <input matInput [formControlName]="'atributo'">
+
+                                        </mat-form-field>
+                                        <mat-form-field class="w-1/2 pr-4">
+                                            <mat-label>Posición</mat-label>
+
+                                            <input matInput [formControlName]="'position'" type="number">
                                             <button class="min-w-10 min-h-7 h-7 px-2 leading-6" mat-stroked-button
                                                 (click)="addAttribute()">
                                                 <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:plus-circle'">
                                                 </mat-icon>
                                             </button>
                                         </mat-form-field>
-
+                                        </div>
                                         <div class="grid">
                                             <!-- Header -->
                                             <div
                                                 class="attribute-grid z-10 sticky top-0 grid gap-4 py-4 px md:px-2 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5">
 
-                                                <div [mat-sort-header]="'name'">Propiedad</div>
+                                                <div class="hidden sm:block" [mat-sort-header]="'name'">Propiedad</div>
+                                                <div class="hidden sm:block" [mat-sort-header]="'order'">Orden</div>
 
                                                 <div class="hidden sm:block">Eliminar</div>
                                             </div>
@@ -112,6 +131,9 @@
                                                         <!-- Nombre -->
                                                         <div class=" block ">
                                                             {{attr.name}}
+                                                        </div>
+                                                        <div class=" block ">
+                                                            {{attr.position}}
                                                         </div>
                                                         <!-- Details button -->
                                                         <div>
@@ -153,43 +175,52 @@
                                 <div class="flex flex-auto flex-wrap">
                                     <!-- Name, SKU & etc. -->
                                     <div class="flex flex-col w-full lg:w-2/4 sm:pl-8">
-                                        <mat-form-field class="w-full">
+                                        <div class="flex">
+                                        <mat-form-field class="w-1/2 pr-4">
                                             <mat-label>Lista</mat-label>
                                             <input matInput [formControlName]="'lista'">
+                                            
+                                        </mat-form-field>
+                                        <mat-form-field class="w-1/2 pr-4">
+                                            <mat-label>Posición</mat-label>
+
+                                            <input matInput [formControlName]="'position'">
                                             <div>
-                                                <button class="min-w-10 min-h-7 h-7 px-2 leading-6"
-                                                    mat-stroked-button>
-                                                    <mat-icon class="icon-size-5"
-                                                        (click)="addList()"
+                                                <button class="min-w-10 min-h-7 h-7 px-2 leading-6" mat-stroked-button>
+                                                    <mat-icon class="icon-size-5" (click)="addList()"
                                                         [svgIcon]="'heroicons_solid:plus-circle' ">
                                                     </mat-icon>
                                                 </button>
                                             </div>
                                         </mat-form-field>
+                                        </div>
                                         <div class="grid">
                                             <!-- Header -->
                                             <div
                                                 class="list-grid z-10 sticky top-0 grid gap-4 py-4 px md:px-2 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5">
 
-                                                <div [mat-sort-header]="'name'">Lista</div>
+                                                <div [mat-sort-header]="'name'">Nombre Lista</div>
+                                                <div [mat-sort-header]="'name'">Posicion</div>
                                                 <div class="hidden sm:block">Detalle</div>
                                                 <div class="hidden sm:block">Eliminar</div>
                                             </div>
                                             <ng-container *ngIf="keysListas">
-                                        
-                                                <ng-container
-                                                    *ngFor="let lis of keysListas ">
+
+                                                <ng-container *ngFor="let lis of keysListas ">
                                                     <div
                                                         class="list-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
                                                         <!-- Nombre -->
                                                         <div class=" block ">
-                                                            {{lis}}
+                                                            {{lis.nombre}}
+                                                        </div>
+                                                        <div class=" block ">
+                                                            {{lis.position}}
                                                         </div>
                                                         <div>
                                                             <button class="min-w-10 min-h-7 h-7 px-2 leading-6"
                                                                 mat-stroked-button>
                                                                 <mat-icon class="icon-size-5"
-                                                                    (click)="toggleDetailsLista(lis)"
+                                                                    (click)="toggleDetailsLista(lis.nombre)"
                                                                     [svgIcon]="'heroicons_solid:menu' ">
                                                                 </mat-icon>
                                                             </button>
@@ -198,8 +229,7 @@
                                                         <div>
                                                             <button class="min-w-10 min-h-7 h-7 px-2 leading-6"
                                                                 mat-stroked-button>
-                                                                <mat-icon class="icon-size-5"
-                                                                    (click)="deleteList(lis)"
+                                                                <mat-icon class="icon-size-5" (click)="deleteList(lis.nombre)"
                                                                     [svgIcon]="'heroicons_solid:trash' ">
                                                                 </mat-icon>
                                                             </button>
@@ -210,38 +240,38 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="flex flex-col w-full lg:w-2/4 sm:pl-8">
+                                    <div class="flex flex-col w-full lg:w-2/4 sm:pl-8" *ngIf="key">
                                         <div class="flex">
-                                        <mat-form-field class="w-1/2 pr-2">
-                                            <mat-label>{{key}} (Label)</mat-label>
+                                            <mat-form-field class="w-1/2 pr-2">
+                                                <mat-label>Lista: {{key}}, (Nombre Atributo)</mat-label>
 
-                                            <input matInput [formControlName]="'labelLista'">
-                                           
-                                        </mat-form-field>
-                                        <mat-form-field class="w-1/2 pr-2">
-                                            <mat-label>(Valor)</mat-label>
+                                                <input matInput [formControlName]="'labelLista'">
 
-                                            <input matInput [formControlName]="'atributoLista'">
-                                            <button class="min-w-10 min-h-7 h-7 px-2 leading-6" mat-stroked-button
-                                                (click)="addAttributeList()">
-                                                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:plus-circle'">
-                                                </mat-icon>
-                                            </button>
-                                        </mat-form-field>
+                                            </mat-form-field>
+                                            <mat-form-field class="w-1/2 pr-2">
+                                                <mat-label>(Valor del atributo)</mat-label>
+
+                                                <input matInput [formControlName]="'atributoLista'">
+                                                <button class="min-w-10 min-h-7 h-7 px-2 leading-6" mat-stroked-button
+                                                    (click)="addAttributeList()">
+                                                    <mat-icon class="icon-size-5"
+                                                        [svgIcon]="'heroicons_solid:plus-circle'">
+                                                    </mat-icon>
+                                                </button>
+                                            </mat-form-field>
                                         </div>
                                         <div class="grid">
                                             <!-- Header -->
                                             <div
                                                 class="attribute-list-grid z-10 sticky top-0 grid gap-4 py-4 px md:px-2 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5">
 
-                                                <div [mat-sort-header]="'name'">Label</div>
-                                                <div [mat-sort-header]="'name'">Valor</div>
+                                                <div [mat-sort-header]="'name'">Nombre Atriburo</div>
+                                                <div [mat-sort-header]="'name'">Valor Atributo</div>
 
                                                 <div class="hidden sm:block">Eliminar</div>
                                             </div>
                                             <ng-container *ngIf="listaAtributo && listaAtributo.length>0">
-                                                <ng-container
-                                                    *ngFor="let attr of listaAtributo; ">
+                                                <ng-container *ngFor="let attr of listaAtributo; ">
                                                     <div
                                                         class="attribute-list-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
                                                         <div class=" block ">
@@ -287,6 +317,9 @@
                                     </div>
                                     <button mat-flat-button [color]="'primary'" (click)='updateSelectedComponente()'>
                                         Actualizar
+                                    </button>
+                                    <button mat-flat-button [color]="'secondary'" (click)='cancelar()'>
+                                        Cancelar
                                     </button>
                                 </div>
                             </div>

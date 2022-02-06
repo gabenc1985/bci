@@ -1,0 +1,28 @@
+{"code":"BCIcompeticion","name":"bpmn:BCICompetitionTask", "type":"ADQ", "alias":"Competición","description":"N/A","order":1}
+{"code":"RandomAdquisition","name":"bpmn:BCIAdquisitionRandomTask", "type":"ADQ", "alias":"Adquisición","description":"N/A","order":2}
+{"code":"Normalizaion","name":"bpmn:BCIPreNormalizacionTask", "type":"PRE", "alias":"Normalización","description":"N/A","order":3}
+{"code":"Cut","name":"bpmn:BCIPreCortarTask", "type":"PRE", "alias":"Cortar","description":"N/A","order":4}
+{"code":"SelectChannels","name":"bpmn:BCIPreSeleCanalesTask", "type":"PRE", "alias":"Seleccionar Canales","description":"N/A","order":5}
+{"code":"Bandpass","name":"bpmn:BCIPreFiltroPasaBandaTask", "type":"PRE", "alias":"Filtro Pasa Banda","description":"N/A","order":6}
+{"code":"Lowpass","name":"bpmn:BCIPreFiltroPasaBajosTask", "type":"PRE", "alias":"Filtro Pasa Bajos","description":"N/A","order":7}
+{"code":"Highpass","name":"bpmn:BCIPreFiltroPasaAltosTask", "type":"PRE", "alias":"Filtro Pasa Altos","description":"N/A","order":8}
+{"code":"CAR","name":"bpmn:BCIPreFiltroCarTask", "type":"PRE", "alias":"Filtro Car","description":"N/A","order":9}
+{"code":"Trials","name":"bpmn:BCIPreTrialsTask", "type":"PRE", "alias":"Trials","description":"N/A","order":10}
+{"code":"Concatenar","name":"bpmn:BCIPreConcatenarTask", "type":"PRE", "alias":"Concatenar","description":"N/A","order":11}
+{"code":"Split","name":"bpmn:BCIPreSplitTask", "type":"PRE", "alias":"Dividir","description":"N/A","order":12}
+{"code":"Hojorth","name":"bpmn:BCIExtHjorthTask", "type":"EXT", "alias":"Hjorth","description":"N/A","order":13}
+{"code":"Stadistics","name":"bpmn:BCIExtEstadisticoTask", "type":"EXT", "alias":"Estadistico","description":"N/A","order":14}
+{"code":"Burg","name":"bpmn:BCIExtBurgTask", "type":"EXT", "alias":"Burg","description":"N/A","order":15}
+{"code":"Welch","name":"bpmn:BCIExtPsdWelchTask", "type":"EXT", "alias":"Psd Welch","description":"N/A","order":16}
+{"code":"AAR","name":"bpmn:BCIExtAARTask", "type":"EXT", "alias":"AAR","description":"N/A","order":17}
+{"code":"Wavelets","name":"bpmn:BCIExtWaveletsTask", "type":"EXT", "alias":"Wavelets","description":"N/A","order":18}
+{"code":"FFT","name":"bpmn:BCIExtTranFourierTask", "type":"EXT", "alias":"Transformada de Fourier","description":"N/A","order":19}
+{"code":"ConcatFeatures","name":"bpmn:BCIExtConcatFeaturesTask", "type":"EXT", "alias":"Concatenar características","description":"N/A","order":20}
+{"code":"PCA","name":"bpmn:BCIExtPcaTask", "type":"EXT", "alias":"PCA","description":"N/A","order":21}
+{"code":"Fractal","name":"bpmn:BCIExtFractalTask", "type":"EXT", "alias":"Fractal","description":"N/A","order":22}
+{"code":"Entropy","name":"bpmn:BCIExtEntropiaTask", "type":"EXT", "alias":"Entropia","description":"N/A","order":23}
+{"code":"SVM","name":"bpmn:BCIClaSvmTask", "type":"CLA", "alias":"SVM","description":"N/A","order":24}
+{"code":"LDA","name":"bpmn:BCIClaLdaTask", "type":"CLA", "alias":"LDA","description":"N/A","order":25}
+{"code":"KNN","name":"bpmn:BCIClaKnnTask", "type":"CLA", "alias":"KNN","description":"N/A","order":26}
+{"code":"RF","name":"bpmn:BCIClaRandomForestTask", "type":"CLA", "alias":"Ramdom","description":"N/A","order":27}
+{"code":"NeuralNetwork","name":"bpmn:BCIClaRedNeuronalTask", "type":"CLA", "alias":"Red Neuronal","description":"N/A","order":28}

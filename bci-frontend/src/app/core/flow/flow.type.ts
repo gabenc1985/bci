@@ -13,6 +13,8 @@ export class Constantes {
     public static SEQUENCE = "bpmn:sequenceFlow";
     public static INCOMING = "bpmn:incoming";
     public static OUTGOING = "bpmn:outgoing";
+
+    public static ID = "id";
     
 }
 
@@ -20,4 +22,10 @@ export interface Attribute{
     name: string;
     value: string;
     type: string;
+    position: number;
+}
+
+export interface AttributeList{
+    attributes: Attribute[]
+    position: number;
 }

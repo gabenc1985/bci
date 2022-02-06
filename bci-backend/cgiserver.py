@@ -5,13 +5,12 @@ Usage::
     ./server.py [<port>]
 """
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from requests import Request, Session
+
 from datetime import datetime
 from os import listdir, remove
 import pandas as pd
 import numpy as np
 
-import requests
 import logging
 import json
 import cgi

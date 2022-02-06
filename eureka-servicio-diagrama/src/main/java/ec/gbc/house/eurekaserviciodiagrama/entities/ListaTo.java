@@ -1,4 +1,4 @@
-package ec.gbc.house.eurekaserviciodiagrama.to;
+package ec.gbc.house.eurekaserviciodiagrama.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

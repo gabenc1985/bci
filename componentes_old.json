@@ -1,0 +1,24 @@
+{"_id":{"$oid":"619f158b951d8d29101ae4ea"},"nombre":"bpmn:BCIAdquisitionRandomTask","descripcion":"descripcion","listas":{"list1":[{"name":"qqq","value":"qwqw","type":"string"}],"lis2":[{"name":"qqq1","value":"qwqw","type":"string"}]},"atributos":[{"name":"att1","type":"string"},{"name":"att2","type":"string"},{"name":"att3","type":"string"}],"_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f159f951d8d29101ae4eb"},"nombre":"bpmn:BCIPreNormalizacionTask","_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f15a7951d8d29101ae4ec"},"nombre":"bpmn:BCIPreSeleCanalesTask","_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f15b0951d8d29101ae4ed"},"nombre":"bpmn:BCICPreCortarTask","_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f17bd951d8d29101ae4f0"},"nombre":"bpmn:BCIPreFiltroPasaBandaTask","_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f1803951d8d29101ae4f1"},"nombre":"bpmn:BCICompetitionTask","descripcion":"bci competition","listas":{"sujetos":[{"name":"demostracion","value":"1"},{"name":"ejemplo","value":"2"}],"LISTA 2":[{"name":"demostracion 002","value":"10000"},{"name":"ejemplo 002","value":"20000"}]},"atributos":[{"name":"dimension","type":"number"}],"_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f1824951d8d29101ae4f2"},"nombre":"bpmn:BCIPreFiltroPasaAltosTask","_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f182d951d8d29101ae4f3"},"nombre":"bpmn:BCIPreFiltroCarTask","_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f1835951d8d29101ae4f4"},"nombre":"bpmn:BCIPreTrialsTask","_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f183f951d8d29101ae4f5"},"nombre":"bpmn:BCIPreConcatenarTask","_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f1848951d8d29101ae4f6"},"nombre":"bpmn:BCIPreSplitTask","_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f1850951d8d29101ae4f7"},"nombre":"bpmn:BCIExtHjorthTask","_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f1858951d8d29101ae4f8"},"nombre":"bpmn:BCIExtEstadisticoTask","_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f185f951d8d29101ae4f9"},"nombre":"bpmn:BCIExtTranFourierTask","_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f1867951d8d29101ae4fa"},"nombre":"bpmn:BCIExtBurgTask","_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f1870951d8d29101ae4fb"},"nombre":"bpmn:BCIExtPsdWelchTask","_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f49ba72b461217c2f1161"},"_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f4a3372b461217c2f1162"},"_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f4ab772b461217c2f1163"},"_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f4b4b72b461217c2f1164"},"_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f4b5f72b461217c2f1165"},"_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f4b8772b461217c2f1166"},"_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f4b8e72b461217c2f1167"},"_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}
+{"_id":{"$oid":"619f4cf872b461217c2f1168"},"_class":"ec.gbc.house.servicio.propiedad.model.Descripcion"}

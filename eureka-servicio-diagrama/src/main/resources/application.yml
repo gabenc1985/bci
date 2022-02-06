@@ -1,8 +1,11 @@
 spring:
   application:
     name: diagrama-service
+  data:
+    mongodb:
+      uri: mongodb://bci-user:bci-password@127.0.0.1:27017/bci
 server:
-  port: 0
+  port: 8092
 eureka:
   client:
     serviceUrl:

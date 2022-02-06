@@ -210,13 +210,49 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
           let definiciones = jsonObj[Constantes.DEFINITIONS]
           let proceso = definiciones[Constantes.PROCESS]
           let secuencia = proceso[Constantes.SEQUENCE]
+
+          //console.log(definiciones)
+          //console.log(proceso)
+          console.log(secuencia)
+
           let startComponentes = secuencia.filter(item => {
+            delete item[Constantes.ID]
             return ("" + item.sourceRef).startsWith("StartEvent_")
           })
-          let recursivo = startComponentes.map(element => {
-            return getSecuencia(element, secuencia, []);
+          console.log(startComponentes)
+          let mapaComponentes = new Map();
+          let index = 0;
+          startComponentes.map(componente=>{
+            mapaComponentes.set(componente.targetRef, index++)
           })
 
+          secuencia.map(sec=>{
+            if(!mapaComponentes.has(sec.sourceRef) && !sec.sourceRef.startsWith("StartEvent_")){
+                mapaComponentes.set(sec.sourceRef, index++)
+            }
+            if(!mapaComponentes.has(sec.targetRef) && !sec.targetRef.startsWith("Event_")){
+              mapaComponentes.set(sec.targetRef, index++)
+          }
+          })
+          console.log(mapaComponentes)
+          let recursivo = startComponentes.map(element => {
+            return getSecuencia(element, secuencia, new Set());
+          })
+
+          console.log("recursivo")
+          console.log(recursivo)
+          let vectores = new Set<String>();
+          recursivo.map(element=> vectores = new Set([...vectores, ...element]))
+          console.log(vectores)
+          let connections = [];
+          vectores.forEach(vec=>{
+            let inicio = mapaComponentes.get(vec.split('-')[0])
+            let fin = mapaComponentes.get(vec.split('-')[1])
+            if(inicio!=undefined && fin!=undefined)
+              connections.push(inicio+"-"+fin)
+          })
+          console.log(connections)
+          /*
           let componentesFinal = recursivo[0].map(t => {
             let componente = Object.keys(proceso)
               .filter(k => {
@@ -227,7 +263,7 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
               })
               .map(k => {
                 if (proceso[k] instanceof Array) {
-                  console.log('gabriel');
+                  //console.log('gabriel');
                   return proceso[k]
                     .flatMap(t => {
                       let nProceso: any = t;
@@ -258,7 +294,7 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
           componentesFinal.forEach(element => {
             element.order = index++
           });
-          console.log(componentesFinal)
+          console.log(componentesFinal)*/
         }
       }
     });
@@ -267,13 +303,15 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
 
 }
 
-function getSecuencia(origen: any, vectorComponente: any, vectorOrdenado: undefined[]) {
+function getSecuencia(origen: any, vectorComponente: any, vectorOrdenado: Set<String>) {
+ 
   let componenteNuevo = vectorComponente.filter(item => {
     return origen.targetRef == item.sourceRef;
   });
   //vectorOrdenado.push(componenteNuevo)
+
   componenteNuevo.map(vo => {
-    vectorOrdenado.push(vo);
+    vectorOrdenado.add(vo.sourceRef + "-" + vo.targetRef);
     getSecuencia(vo, vectorComponente, vectorOrdenado);
   })
   return vectorOrdenado;

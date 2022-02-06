@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ec.gbc.house.eurekaserviciodiagrama.to.CatalogoTo;
-import ec.gbc.house.eurekaserviciodiagrama.to.ListaTo;
+import ec.gbc.house.eurekaserviciodiagrama.entities.CatalogoTo;
+import ec.gbc.house.eurekaserviciodiagrama.entities.ListaTo;
 
 @RestController
 public class DiagramaController {
@@ -34,5 +35,9 @@ public class DiagramaController {
 		catalogos.add(catalogo);
 		return catalogos ;
 	}
+
+	@PostMapping("save")
+	public
+
 	
 }

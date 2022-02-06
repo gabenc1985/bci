@@ -5,8 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.io.Serializable;
+
 @Data
-public class ListaTo {
+public class Atributo implements Serializable {
 	
 	@JsonProperty(value = "name")
 	@Field("name")
@@ -19,5 +21,10 @@ public class ListaTo {
 	@JsonProperty(value = "type")
 	@Field("type")
 	private String tipo;
+
+	@JsonProperty(value = "position")
+	@Field("position")
+	private Double position;
+
 
 }
