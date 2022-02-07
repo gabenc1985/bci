@@ -13,6 +13,9 @@ export class Constantes {
     public static SEQUENCE = "bpmn:sequenceFlow";
     public static INCOMING = "bpmn:incoming";
     public static OUTGOING = "bpmn:outgoing";
+    public static START_EVENT = "bpmn:startEvent";
+    public static END_EVENT = "bpmn:endEvent";
+    public static SEQUENCE_FLOW = "bpmn:sequenceFlow";
 
     public static ID = "id";
     

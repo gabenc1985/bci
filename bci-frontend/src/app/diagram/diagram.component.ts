@@ -137,8 +137,6 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
   }
 
   ngAfterContentInit() {
-    console.log(this.el.nativeElement)
-    console.log(this.propertiesRef.nativeElement)
     this.bpmnJS.attachTo(this.el.nativeElement);
   }
 
@@ -213,6 +211,7 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
         if (jsonObj[Constantes.DEFINITIONS]) {
           let definiciones = jsonObj[Constantes.DEFINITIONS]
           let proceso = <Map<any, any>>definiciones[Constantes.PROCESS]
+
           let secuencia = proceso[Constantes.SEQUENCE]
           let startComponentes = secuencia.filter(item => {
             delete item[Constantes.ID]
@@ -263,7 +262,7 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
           let componentesBCI = new Map()
           componentesBCI.set("bpmn:bCICompetitionTask", "BCIcompeticion");
           componentesBCI.set("bpmn:bCIAdquisitionRandomTask", "RandomAdquisition");
-          componentesBCI.set("bpmn:bCIPreNormalizacionTask", "Normalizaion");
+          componentesBCI.set("bpmn:bCIPreNormalizacionTask", "Normalization");
           componentesBCI.set("bpmn:bCIPreCortarTask", "Cut");
           componentesBCI.set("bpmn:bCIPreSeleCanalesTask", "SelectChannels");
           componentesBCI.set("bpmn:bCIPreFiltroPasaBandaTask", "Bandpass");
@@ -290,6 +289,11 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
           componentesBCI.set("bpmn:bCIClaRandomForestTask", "RF");
           componentesBCI.set("bpmn:bCIClaRedNeuronalTask", "NeuralNetwork");
           let bloques = [];
+          delete proceso[Constantes.START_EVENT]
+          delete proceso[Constantes.END_EVENT]
+          delete proceso[Constantes.SEQUENCE_FLOW]
+          console.log(proceso)
+          console.log(mapaComponentes)
           mapaComponentes.forEach((value: string, key: string) => {
             let id = value;
             let idActividad = key;
@@ -301,38 +305,45 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
                   param[atributo] = actividad[atributo];
                 }
               })
-              var type = "type"
-              Object.keys(proceso).map(it => {
+            })
+            var type = "type"
+            Object.keys(proceso).map(it => {
+
+              if (proceso[it] instanceof Array) {
+                <[]>proceso[it].map(item => {
+                  if (item.id == idActividad) {
+                    type = componentesBCI.get(it)
+                  }
+                })
+              } else
                 if (proceso[it].id == idActividad) {
                   type = componentesBCI.get(it)
                 }
-              })
-
-              let attribute: AttributeBCI = {
-                id: +id,
-                type: type,
-                params: param,
-
-              }
-              bloques.push(attribute)
             })
-            let resultado = {
-              bloques: bloques,
-              conexiones: connections
-            }
 
-            console.log(JSON.stringify(resultado))
+            let attribute: AttributeBCI = {
+              id: +id,
+              type: type,
+              params: param,
+
+            }
+            bloques.push(attribute)
           })
+
+
+          let resultado = {
+            bloques: bloques,
+            conexiones: connections
+          }
+
+          console.log(JSON.stringify(resultado))
+
         }
       }
     });
   }
 }
 
-
-function getActividad(act, act2) {
-
-}
 
 function getSecuencia(origen: any, vectorComponente: any, vectorOrdenado: Set<String>) {
 

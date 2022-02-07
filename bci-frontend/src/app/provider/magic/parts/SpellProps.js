@@ -13,13 +13,13 @@ var domQuery = require('min-dom').query;
 
 
 
-export default function ( group, element, translate, datos) {
+export default function (group, element, translate, datos) {
 
   // Only return an entry, if the currently selected
   // element is a start event.
 
   let variable = datos.filter(cp => cp.name == element.type);
-  
+
   if (variable == undefined || variable == null) {
     return;
   }
@@ -27,22 +27,23 @@ export default function ( group, element, translate, datos) {
     return;
   }
   variable = variable[0];
-  group.label=variable.alias;
-  console.log(variable)
-  if(variable.code){
+  group.label = variable.alias;
+
+  if (variable.code) {
     group.entries.push(entryFactory.textField(translate, {
       id: variable.code,
       description: variable.description,
       label: variable.code,
+      /*
       hidden: function(element, inputNode) {
        // var input = domQuery('input[name="' + options.modelProperty + '"]', inputNode);
        // input.value = '';
         var input = domQuery('input[name="' + variable.code+ '"]', inputNode);
         input.value=variable.code
-        console.log(domQuery('input[name="' + variable.code+ '"]', inputNode))
         return true;
     
       },
+      */
       modelProperty: variable.code
     }))
   }
@@ -51,15 +52,15 @@ export default function ( group, element, translate, datos) {
     let valores = variable.attributes;
     for (let i = 0; i < valores.length; i++) {
       let clave = valores[i].name;
-      
+
       if (valores[i].type === 'string') {
         group.entries.push(entryFactory.textField(translate, {
           id: clave,
           description: valores[i].description,
           label: clave,
-         
+
           modelProperty: clave
-          
+
         }))
       }
       if (valores[i].type === 'number') {
@@ -93,10 +94,10 @@ export default function ( group, element, translate, datos) {
         if (variable.list[clave].attributes instanceof Array) {
           let valoresLista = variable.list[clave].attributes;
 
-          let campos = [{"name": "Seleccione...","value": "","type":"string"}];
-          campos=campos.concat(valoresLista);
+          let campos = [{ "name": "Seleccione...", "value": "", "type": "string" }];
+          campos = campos.concat(valoresLista);
 
-          
+
           group.entries.push(entryFactory.selectBox(translate, {
             id: clave,
             //description: '2 Apply a black magic spell',
@@ -104,11 +105,11 @@ export default function ( group, element, translate, datos) {
             modelProperty: clave.toLowerCase().replaceAll(' ', '').replaceAll('#', ''),
             selectOptions: campos,
             setControlValue: true,
-            emptyParameter:false
+            emptyParameter: false
           }))
         }
       }
     }
   }
-  
+
 }
