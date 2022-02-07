@@ -44,6 +44,8 @@ export default function MagicPropertiesProvider(propertiesPanel, translate) {
         groups: createMagicTabGroups(element, translate, datos)
       };
 
+      if (magicTab.groups[0])
+        entries[0].label = magicTab.groups[0].label
       entries.push(magicTab);
       return entries;
 
@@ -56,7 +58,7 @@ function getDatos() {
     var arrValues = []
     $.ajax({
       //url: "./assets/databases.json",
-      url:"http://localhost:8888/componente/all",
+      url: "http://localhost:8888/componente/all",
       method: "GET",
       success: function (result) {
         arrValues = result;

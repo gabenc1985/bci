@@ -8,7 +8,8 @@ import {
   Output,
   ViewChild,
   SimpleChanges,
-  EventEmitter
+  EventEmitter,
+  Attribute
 } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
@@ -29,7 +30,7 @@ import propertiesPanelModule from 'bpmn-js-properties-panel';
 import bpmnPropertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/bpmn';
 import magicPropertiesProviderModule from '../provider/magic';
 import { ControlesService } from 'app/provider/controles.service';
-import { Constantes } from 'app/core/flow/flow.type';
+import { AttributeBCI, Constantes } from 'app/core/flow/flow.type';
 declare var require: any;
 var fastXmlParser = require('fast-xml-parser');
 
@@ -106,9 +107,12 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
 
   @Input() private url: string;
 
+  private componentesBCI = new Map();
 
 
-  constructor(private http: HttpClient, private controlesService: ControlesService) { }
+  constructor(private http: HttpClient, private controlesService: ControlesService) {
+
+  }
 
   ngOnInit() {
 
@@ -188,123 +192,150 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
 
   public printXml() {
 
-    const defaultOptions = {
-      attributeNamePrefix: "",
-      attrNodeName: false, //default is false
-      textNodeName: "#text",
-      ignoreAttributes: false,
-      ignoreNamespaces: true,
-      cdataTagName: false, //default is false
-      cdataPositionChar: "\\c",
-      format: true,
-      indentBy: "  ",
-      supressEmptyNode: false,
-      rootNodeName: "element"
-    };
+
     this.bpmnJS.saveXML({ format: true }, function (err, xml) {
       //here xml is the bpmn format 
-
+      const defaultOptions = {
+        attributeNamePrefix: "",
+        attrNodeName: false, //default is false
+        textNodeName: "#text",
+        ignoreAttributes: false,
+        ignoreNamespaces: true,
+        cdataTagName: false, //default is false
+        cdataPositionChar: "\\c",
+        format: true,
+        indentBy: "  ",
+        supressEmptyNode: true,
+        rootNodeName: "element"
+      };
       if (fastXmlParser.validate(xml) === true) { //optional (it'll return an object in case it's not valid)
         let jsonObj = fastXmlParser.parse(xml, defaultOptions);
         if (jsonObj[Constantes.DEFINITIONS]) {
           let definiciones = jsonObj[Constantes.DEFINITIONS]
-          let proceso = definiciones[Constantes.PROCESS]
+          let proceso = <Map<any, any>>definiciones[Constantes.PROCESS]
           let secuencia = proceso[Constantes.SEQUENCE]
-
-          //console.log(definiciones)
-          //console.log(proceso)
-          console.log(secuencia)
-
           let startComponentes = secuencia.filter(item => {
             delete item[Constantes.ID]
             return ("" + item.sourceRef).startsWith("StartEvent_")
           })
-          console.log(startComponentes)
           let mapaComponentes = new Map();
           let index = 0;
-          startComponentes.map(componente=>{
+          startComponentes.map(componente => {
             mapaComponentes.set(componente.targetRef, index++)
           })
 
-          secuencia.map(sec=>{
-            if(!mapaComponentes.has(sec.sourceRef) && !sec.sourceRef.startsWith("StartEvent_")){
-                mapaComponentes.set(sec.sourceRef, index++)
+          secuencia.map(sec => {
+            if (!mapaComponentes.has(sec.sourceRef) && !sec.sourceRef.startsWith("StartEvent_")) {
+              mapaComponentes.set(sec.sourceRef, index++)
             }
-            if(!mapaComponentes.has(sec.targetRef) && !sec.targetRef.startsWith("Event_")){
+            if (!mapaComponentes.has(sec.targetRef) && !sec.targetRef.startsWith("Event_")) {
               mapaComponentes.set(sec.targetRef, index++)
-          }
+            }
           })
-          console.log(mapaComponentes)
+
           let recursivo = startComponentes.map(element => {
             return getSecuencia(element, secuencia, new Set());
           })
-
-          console.log("recursivo")
-          console.log(recursivo)
           let vectores = new Set<String>();
-          recursivo.map(element=> vectores = new Set([...vectores, ...element]))
-          console.log(vectores)
+          recursivo.map(element => vectores = new Set([...vectores, ...element]))
+
           let connections = [];
-          vectores.forEach(vec=>{
+          vectores.forEach(vec => {
             let inicio = mapaComponentes.get(vec.split('-')[0])
             let fin = mapaComponentes.get(vec.split('-')[1])
-            if(inicio!=undefined && fin!=undefined)
-              connections.push(inicio+"-"+fin)
+            if (inicio != undefined && fin != undefined)
+              connections.push(inicio + "-" + fin)
           })
-          console.log(connections)
-          /*
-          let componentesFinal = recursivo[0].map(t => {
-            let componente = Object.keys(proceso)
-              .filter(k => {
-                return k != 'bpmn:sequenceFlow'
-                  && k !== 'bpmn:startEvent'
-                  && k !== 'bpmn:endEvent'
-                  && (proceso[k] instanceof Object || proceso[k] instanceof Array)
-              })
-              .map(k => {
-                if (proceso[k] instanceof Array) {
-                  //console.log('gabriel');
-                  return proceso[k]
-                    .flatMap(t => {
-                      let nProceso: any = t;
-                      nProceso.name = k
-                      delete nProceso[Constantes.INCOMING]
-                      delete nProceso[Constantes.OUTGOING]
-                      return nProceso;
-                    })
-                } else {
-                  let nProceso: any = proceso[k];
-                  nProceso.name = k
-                  delete nProceso[Constantes.INCOMING]
-                  delete nProceso[Constantes.OUTGOING]
-                  return nProceso;
+
+          let componentesProceso = Object.keys(proceso)
+            .filter(k => {
+              return k != 'isExecutable'
+                && k != 'id'
+                && k != 'bpmn:sequenceFlow'
+                && k !== 'bpmn:startEvent'
+                && k !== 'bpmn:endEvent'
+
+            }).map(item => {
+              delete proceso[item][Constantes.INCOMING]
+              delete proceso[item][Constantes.OUTGOING]
+              return proceso[item];
+            })
+          let componentesBCI = new Map()
+          componentesBCI.set("bpmn:bCICompetitionTask", "BCIcompeticion");
+          componentesBCI.set("bpmn:bCIAdquisitionRandomTask", "RandomAdquisition");
+          componentesBCI.set("bpmn:bCIPreNormalizacionTask", "Normalizaion");
+          componentesBCI.set("bpmn:bCIPreCortarTask", "Cut");
+          componentesBCI.set("bpmn:bCIPreSeleCanalesTask", "SelectChannels");
+          componentesBCI.set("bpmn:bCIPreFiltroPasaBandaTask", "Bandpass");
+          componentesBCI.set("bpmn:bCIPreFiltroPasaBajosTask", "Lowpass");
+          componentesBCI.set("bpmn:bCIPreFiltroPasaAltosTask", "Highpass");
+          componentesBCI.set("bpmn:bCIPreFiltroCarTask", "CAR");
+          componentesBCI.set("bpmn:bCIPreTrialsTask", "Trials");
+          componentesBCI.set("bpmn:bCIPreConcatenarTask", "Concatenar");
+          componentesBCI.set("bpmn:bCIPreSplitTask", "Split");
+          componentesBCI.set("bpmn:bCIExtHjorthTask", "Hojorth");
+          componentesBCI.set("bpmn:bCIExtEstadisticoTask", "Stadistics");
+          componentesBCI.set("bpmn:bCIExtBurgTask", "Burg");
+          componentesBCI.set("bpmn:bCIExtPsdWelchTask", "Welch");
+          componentesBCI.set("bpmn:bCIExtAARTask", "AAR");
+          componentesBCI.set("bpmn:bCIExtWaveletsTask", "Wavelets");
+          componentesBCI.set("bpmn:bCIExtTranFourierTask", "FFT");
+          componentesBCI.set("bpmn:bCIExtConcatFeaturesTask", "ConcatFeatures");
+          componentesBCI.set("bpmn:bCIExtPcaTask", "PCA");
+          componentesBCI.set("bpmn:bCIExtFractalTask", "Fractal");
+          componentesBCI.set("bpmn:bCIExtEntropiaTask", "Entropy");
+          componentesBCI.set("bpmn:bCIClaSvmTask", "SVM");
+          componentesBCI.set("bpmn:bCIClaLdaTask", "LDA");
+          componentesBCI.set("bpmn:bCIClaKnnTask", "KNN");
+          componentesBCI.set("bpmn:bCIClaRandomForestTask", "RF");
+          componentesBCI.set("bpmn:bCIClaRedNeuronalTask", "NeuralNetwork");
+          let bloques = [];
+          mapaComponentes.forEach((value: string, key: string) => {
+            let id = value;
+            let idActividad = key;
+            let params = componentesProceso.filter(cP => cP.id === idActividad);
+            let param = new Map();
+            params.map(actividad => {
+              Object.keys(actividad).map(atributo => {
+                if (atributo != 'id') {
+                  param[atributo] = actividad[atributo];
                 }
               })
-              .flatMap(f => f)
-              .filter(p => {
-                return t.sourceRef == p.id
-              });
-            if (!t.targetRef.startsWith("Event_")) {
-              componente[0].next = t.targetRef;
+              var type = "type"
+              Object.keys(proceso).map(it => {
+                if (proceso[it].id == idActividad) {
+                  type = componentesBCI.get(it)
+                }
+              })
 
+              let attribute: AttributeBCI = {
+                id: +id,
+                type: type,
+                params: param,
+
+              }
+              bloques.push(attribute)
+            })
+            let resultado = {
+              bloques: bloques,
+              conexiones: connections
             }
-            return componente[0];
+
+            console.log(JSON.stringify(resultado))
           })
-          var index = 1;
-          componentesFinal.forEach(element => {
-            element.order = index++
-          });
-          console.log(componentesFinal)*/
         }
       }
     });
   }
+}
 
+
+function getActividad(act, act2) {
 
 }
 
 function getSecuencia(origen: any, vectorComponente: any, vectorOrdenado: Set<String>) {
- 
+
   let componenteNuevo = vectorComponente.filter(item => {
     return origen.targetRef == item.sourceRef;
   });
@@ -317,4 +348,6 @@ function getSecuencia(origen: any, vectorComponente: any, vectorOrdenado: Set<St
   return vectorOrdenado;
 
 }
+
+
 

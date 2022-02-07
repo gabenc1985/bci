@@ -29,3 +29,10 @@ export interface AttributeList{
     attributes: Attribute[]
     position: number;
 }
+
+
+export interface AttributeBCI {
+    id:number
+    type:string
+    params:Map<string, any>
+}

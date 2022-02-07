@@ -9,10 +9,11 @@ var DELEGATE_TYPES = [
   'expression',
   'delegateExpression'
 ];
+var domQuery = require('min-dom').query;
 
 
 
-export default function (group, element, translate, datos) {
+export default function ( group, element, translate, datos) {
 
   // Only return an entry, if the currently selected
   // element is a start event.
@@ -26,21 +27,39 @@ export default function (group, element, translate, datos) {
     return;
   }
   variable = variable[0];
+  group.label=variable.alias;
+  console.log(variable)
+  if(variable.code){
+    group.entries.push(entryFactory.textField(translate, {
+      id: variable.code,
+      description: variable.description,
+      label: variable.code,
+      hidden: function(element, inputNode) {
+       // var input = domQuery('input[name="' + options.modelProperty + '"]', inputNode);
+       // input.value = '';
+        var input = domQuery('input[name="' + variable.code+ '"]', inputNode);
+        input.value=variable.code
+        console.log(domQuery('input[name="' + variable.code+ '"]', inputNode))
+        return true;
+    
+      },
+      modelProperty: variable.code
+    }))
+  }
   if (variable.attributes) {
+
     let valores = variable.attributes;
-    console.log(valores.length)
     for (let i = 0; i < valores.length; i++) {
-      console.log(valores[i])
       let clave = valores[i].name;
+      
       if (valores[i].type === 'string') {
         group.entries.push(entryFactory.textField(translate, {
           id: clave,
-          //description: '2 Apply a black magic spell',
+          description: valores[i].description,
           label: clave,
-          validate: function (element, values, node) {
-            return values.delegate != undefined && values.delegate != null;
-          },
+         
           modelProperty: clave
+          
         }))
       }
       if (valores[i].type === 'number') {
@@ -66,15 +85,17 @@ export default function (group, element, translate, datos) {
   }
   if (variable.list) {
     let valores = Object.keys(variable.list);
-    console.log(valores)
+
     for (let i = 0; i < valores.length; i++) {
       let clave = valores[i];
+
       if (typeof variable.list[clave] === 'object') {
-        if (variable.list[clave] instanceof Array) {
-          console.log(variable.list[clave])
-          let campos = [{"name": "Seleccione2...","value": "","type":"string"}];
-          campos=campos.concat(variable.list[clave]);
-          console.log(campos);
+        if (variable.list[clave].attributes instanceof Array) {
+          let valoresLista = variable.list[clave].attributes;
+
+          let campos = [{"name": "Seleccione...","value": "","type":"string"}];
+          campos=campos.concat(valoresLista);
+
           
           group.entries.push(entryFactory.selectBox(translate, {
             id: clave,

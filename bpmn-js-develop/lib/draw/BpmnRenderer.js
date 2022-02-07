@@ -1622,6 +1622,7 @@ export default function BpmnRenderer(
       return renderExternalLabel(parentGfx, element);
     },
     'bpmn:BCICompetitionTask': function(parentGfx, element) {
+      element.code='codes';
       var task = renderer('bpmn:Task')(parentGfx, element);
       var pathData = pathMap.getScaledPath('BCI_ADQ_COMPETITION', {
         abspos: {
