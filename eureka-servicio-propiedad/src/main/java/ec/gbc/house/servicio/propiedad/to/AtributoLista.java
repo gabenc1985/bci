@@ -16,5 +16,5 @@ public class AtributoLista implements Serializable {
 
     @Field("attributes")
     @JsonProperty(value = "attributes")
-    private List<Atributo> atributos;
+    private List<Attribute> atributos;
 }

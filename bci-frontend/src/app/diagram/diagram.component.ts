@@ -192,6 +192,7 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
 
 
     this.bpmnJS.saveXML({ format: true }, function (err, xml) {
+      console.log(xml)
       //here xml is the bpmn format 
       const defaultOptions = {
         attributeNamePrefix: "",

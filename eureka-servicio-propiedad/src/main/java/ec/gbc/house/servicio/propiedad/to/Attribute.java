@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import java.io.Serializable;
 
 @Data
-public class Atributo implements Serializable {
+public class Attribute implements Serializable {
 	
 	@JsonProperty(value = "name")
 	@Field("name")

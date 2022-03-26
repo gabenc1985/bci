@@ -3,7 +3,7 @@ package ec.gbc.house.servicio.propiedad.model;
 import java.util.List;
 import java.util.Map;
 
-import ec.gbc.house.servicio.propiedad.to.Atributo;
+import ec.gbc.house.servicio.propiedad.to.Attribute;
 import ec.gbc.house.servicio.propiedad.to.AtributoLista;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -41,5 +41,5 @@ public class Componente {
 	
 	private Map<String, AtributoLista> lists;
 	
-	private List<Atributo> attributes;
+	private List<Attribute> attributes;
 }

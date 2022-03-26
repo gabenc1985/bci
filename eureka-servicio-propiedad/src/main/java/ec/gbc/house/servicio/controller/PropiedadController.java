@@ -1,7 +1,7 @@
 package ec.gbc.house.servicio.controller;
 
-import ec.gbc.house.servicio.propiedad.service.PropiedadServicio;
-import ec.gbc.house.servicio.propiedad.to.Componente;
+import ec.gbc.house.servicio.propiedad.service.PropertyService;
+import ec.gbc.house.servicio.propiedad.to.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
@@ -14,22 +14,22 @@ import java.util.List;
 public class PropiedadController {
 
 	@Autowired
-	private PropiedadServicio servicio;
+	private PropertyService servicio;
 
 	@GetMapping("/all")
-	public List<Componente> all() {
+	public List<Component> all() {
 		return servicio.obtenerTodosLosCatalogos();
 	}
 
 	@PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON,
 			produces = MediaType.APPLICATION_JSON)
-	public String save(@RequestBody Componente catalogoTo){
+	public String save(@RequestBody Component catalogoTo){
 		return servicio.guardarActualizarCatalogo(catalogoTo);
 	}
 
 	@GetMapping(value = "/find/{id}",
 			produces = MediaType.APPLICATION_JSON)
-	public Componente save(@PathVariable("id") String id){
+	public Component save(@PathVariable("id") String id){
 		return servicio.buscarCatalogoPorId(id);
 	}
 
@@ -42,19 +42,19 @@ public class PropiedadController {
 
 	@GetMapping(value = "/components",
 			produces = MediaType.APPLICATION_JSON)
-	public List<Componente> getList(){
+	public List<Component> getList(){
 		return servicio.obtenerListadoComponentes();
 	}
 
 	@GetMapping(value = "/findName/{name}",
 			produces = MediaType.APPLICATION_JSON)
-	public Componente findByName(@PathVariable("name") String name){
+	public Component findByName(@PathVariable("name") String name){
 		return servicio.buscarCatalogoPorName(name);
 	}
 
 	@GetMapping(value = "/findByType/{type}",
 			produces = MediaType.APPLICATION_JSON)
-	public List<Componente> findByType(@PathVariable("type") String type){
+	public List<Component> findByType(@PathVariable("type") String type){
 		return servicio.buscarCatalogoPorTipo(type);
 	}
 }

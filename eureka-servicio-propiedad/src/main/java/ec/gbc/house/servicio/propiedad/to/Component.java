@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Data
 @JsonInclude(value = Include.NON_NULL)
-public class Componente implements Serializable {
+public class Component implements Serializable {
 	
 	private String id;
 
@@ -38,6 +38,6 @@ public class Componente implements Serializable {
 	private Map<String, AtributoLista> listas;
 
 	@JsonProperty(value = "attributes")
-	private List<Atributo> atributos;
+	private List<Attribute> atributos;
 
 }
